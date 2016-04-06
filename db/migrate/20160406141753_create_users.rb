@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email
       t.string :password_digest
       t.string :phone_number
-      t.boolean :artist_boolean
+      t.boolean :artist_boolean, default: false
       t.string :photo_id
       t.text :bio
 
