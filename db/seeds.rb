@@ -86,8 +86,8 @@ if User.count == 0
   user.save
 end
 
-if Artwork.count == 0
-  art = Artwork.new
+if Piece.count == 0
+  art = Piece.new
   art.user_id = 1
   art.title = 'Landscape painting , 40" - Beautiful & Colorful Abstract Tree'
   art.price = 420.00
@@ -111,7 +111,7 @@ DETAILS
   end
   art.save
 
-  art = Artwork.new
+  art = Piece.new
   art.user_id = 1
   art.title = 'Painting 40" Pink Flower, Modern style, luxury looks, thick layers'
   art.price = 360.00
@@ -136,7 +136,7 @@ DETAILS
   end
   art.save
 
-  art = Artwork.new
+  art = Piece.new
   art.user_id = 2
   art.title = "Oil Painting Original Artwork Seascape Sailing Boat and Lighthouse at Dawn Vivid Color Painted with Palette Knife Textured"
   art.price = 135.00
@@ -156,7 +156,7 @@ packing materials.'
   end
   art.save
 
-  art = Artwork.new
+  art = Piece.new
   art.user_id = 2
   art.title = "Canvas Art, Black and White Wall Art, Large Oil Painting"
   art.price = 250.00
@@ -175,7 +175,7 @@ This artwork is new and in excellent condition. Directly from my studio.'
   end
   art.save
 
-  art = Artwork.new
+  art = Piece.new
   art.user_id = 3
   art.title = 'Marilyn Monroe Art, 4"x24" Reclaimed Wood Art'
   art.price = 425.00
@@ -188,7 +188,7 @@ This artwork is new and in excellent condition. Directly from my studio.'
   end
   art.save
 
-  art = Artwork.new
+  art = Piece.new
   art.user_id = 3
   art.title = 'Pop Art Custom Dog Portrait Custom'
   art.price = 500.00
@@ -201,7 +201,7 @@ This artwork is new and in excellent condition. Directly from my studio.'
   end
   art.save
 
-  art = Artwork.new
+  art = Piece.new
   art.user_id = 3
   art.title = 'CUSTOM Pop Art Painting Remix, Large Canvas Painting 48"x48" Urban Art Mashup Pop Art Fusion'
   art.price = 1800.00
@@ -214,7 +214,7 @@ This artwork is new and in excellent condition. Directly from my studio.'
   end
   art.save
 
-  art = Artwork.new
+  art = Piece.new
   art.user_id = 4
   art.title = "Twelve Square Inches of Sunshine"
   art.price = 400.00
@@ -229,7 +229,7 @@ Oil on stretched canvas. The gallery-wrapped (no staples around edges) canvas is
   end
   art.save
 
-  art = Artwork.new
+  art = Piece.new
   art.user_id = 4
   art.title = "Hot Red Rose"
   art.price = 120.00
@@ -244,7 +244,7 @@ Oil on oil-primed linen on birch panel. The painting is mounted on Baltic birch 
   end
   art.save
 
-  art = Artwork.new
+  art = Piece.new
   art.user_id = 4
   art.title = "18\" x 24\", Custom Portrait from Your Photograph"
   art.price = 800.00
@@ -257,7 +257,7 @@ Oil on oil-primed linen on birch panel. The painting is mounted on Baltic birch 
   end
   art.save
 
-  art = Artwork.new
+  art = Piece.new
   art.user_id = 4
   art.title = "6\" x 8\", Custom Pet Portrait from Your Photograph"
   art.price = 135.00

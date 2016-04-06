@@ -1,0 +1,34 @@
+<div class="art">
+  <h1>Local Art</h1>
+  <div class="container">
+    <% @pieces.each do |piece| %>
+      <div class="flip-container">
+        <div class="card">
+          <div class="front">
+            <%= image_tag attachment_url(piece, :photo, :fill, 300, 300, format: "jpg"), class: "img-responsive" %>
+          </div>
+          <div class="back">
+            <h4><%= piece.title %></h4>
+            <h5>By: <%= piece.user.full_name %></h5>
+            <h5><%= number_to_currency piece.price %></h5>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  var adjustSize = function() {
+    var width = $("img").css("width");
+    $(".back").css("width", width);
+    $(".back").css("height", width);
+    $(".front").css("height", width);
+  }
+  $( window ).load(function() {
+    adjustSize();
+  });
+  $( window ).resize(function() {
+    adjustSize();
+  });
+</script>

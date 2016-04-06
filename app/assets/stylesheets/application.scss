@@ -1,0 +1,88 @@
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'pieces';
+
+$font: 'Open Sans Condensed', sans-serif;
+
+.art {
+  font-family: $font;
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: 0 auto;
+    position: relative;
+    .flip-container {
+      width: 25%;
+      position: relative;
+      perspective: 1000;
+    }
+    .flip-container:hover .card, .flip-container.hover .card {
+        transform: rotateY(180deg);
+      }
+    .card {
+      position: relative;
+      transform-style: preserve-3d;
+      transition: 1s;
+      width: 100%;
+      .front {
+        backface-visibility: hidden;
+        z-index: 2;
+        transform: rotateY(0deg);
+      }
+      .back {
+        backface-visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 3;
+        transform: rotateY(180deg);
+        background-color: #333;
+        height: 100%;
+        h4, h5 {
+          color: #fff;
+          padding: 10px;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1024px) {
+  .flip-container {
+    width: 33%;
+  }
+  .art {
+    background-color: red;
+  }
+}
+@media screen and (max-width: 768px) {
+  .flip-container {
+    width: 50%;
+  }
+  .art {
+    background-color: blue;
+  }
+}
+@media screen and (max-width: 480px) {
+  h5 {
+    font-size: 16px;
+  }
+  h4 {
+    font-size: 14px;
+  }
+  .art {
+    background-color: green;
+  }
+}
+@media screen and (max-width: 320px) {
+  h5 {
+    font-size: 12px;
+  }
+  h4 {
+    font-size: 10px;
+  }
+  .art {
+    background-color: purple;
+  }
+}

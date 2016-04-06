@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20160406150952) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "artworks", force: :cascade do |t|
+  create_table "pieces", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "title"
     t.float    "price",       default: 0.0

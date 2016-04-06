@@ -1,6 +1,6 @@
 class CreateArtworks < ActiveRecord::Migration
   def change
-    create_table :artworks do |t|
+    create_table :pieces do |t|
       t.integer :user_id
       t.string :title
       t.float :price, default: 0.0

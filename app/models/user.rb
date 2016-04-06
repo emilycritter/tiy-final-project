@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :pieces, dependent: :destroy
+  
   validates :first_name, :last_name, :email, :password, presence: true
   validates :email, uniqueness: true
 
