@@ -2,8 +2,8 @@
   <h1>Local Art</h1>
   <div class="container">
     <% @pieces.each do |piece| %>
-      <div class="flip-container">
-        <div class="card">
+      <div class="flip-container" onclick="flipFunction(<%= piece.id %>)">
+        <div class="card" id="<%= piece.id %>">
           <div class="front">
             <%= image_tag attachment_url(piece, :photo, :fill, 300, 300, format: "jpg"), class: "img-responsive" %>
           </div>
@@ -31,4 +31,16 @@
   $( window ).resize(function() {
     adjustSize();
   });
+</script>
+
+<script type="text/javascript">
+  // function flipFunction(pieceId) {
+  //   if ($(".card").css("transform") === "matrix3d(1, 0, 0, 1, 0, 0)") {
+  //     $("#" + pieceId).css("transform", "rotateY(0deg)")
+  //     console.log($("#" + pieceId).css("transform"))
+  //   } else {
+  //     $("#" + pieceId).css("transform", "rotateY(180deg)")
+  //     console.log($("#" + pieceId).css("transform"))
+  //   }
+  // }
 </script>
