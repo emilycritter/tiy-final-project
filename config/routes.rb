@@ -13,6 +13,13 @@ Rails.application.routes.draw do
   post 'sign_in' => 'sessions#create'
   get 'sign_out' => 'sessions#delete', as: :sign_out
 
+  namespace :api do
+    resources :pieces
+    resources :users
+    resources :artists
+    get 'me' => 'users#me'
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
