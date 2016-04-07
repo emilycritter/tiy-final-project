@@ -11,13 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160406150952) do
+ActiveRecord::Schema.define(version: 20160407153114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "pieces", force: :cascade do |t|
+  create_table "artists", force: :cascade do |t|
+    t.string   "shop_name"
+    t.string   "photo_id"
+    t.text     "bio"
     t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pieces", force: :cascade do |t|
     t.string   "title"
     t.float    "price",       default: 0.0
     t.integer  "inventory",   default: 1
@@ -25,6 +33,7 @@ ActiveRecord::Schema.define(version: 20160406150952) do
     t.string   "photo_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.integer  "artist_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -33,11 +42,8 @@ ActiveRecord::Schema.define(version: 20160406150952) do
     t.string   "email"
     t.string   "password_digest"
     t.string   "phone_number"
-    t.boolean  "artist_boolean",  default: false
-    t.string   "photo_id"
-    t.text     "bio"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
 end
