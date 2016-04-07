@@ -3,9 +3,9 @@
   <div class="container">
     <% @pieces.each do |piece| %>
       <div class="flip-container" onclick="flipFunction(<%= piece.id %>)">
-        <div class="card" id="<%= piece.id %>">
+        <div class="card img-responsive" id="<%= piece.id %>">
           <div class="front">
-            <%= image_tag attachment_url(piece, :photo, :fill, 300, 300, format: "jpg"), class: "img-responsive" %>
+            <%= image_tag attachment_url(piece, :photo, :fill, 400, 400, format: "jpg"), class: "img-responsive" %>
           </div>
           <div class="back">
             <h4><%= piece.title %></h4>
