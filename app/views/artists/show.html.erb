@@ -1,2 +1,9 @@
-<h1>Artists#show</h1>
-<p>Find me in app/views/artists/show.html.erb</p>
+<h1>Artist: <%= @artist.shop_name %></h1>
+
+
+  <ul>
+    <% @artist.pieces.each do |piece| %>
+      <li><%= piece.title %></li>
+      <li><%= image_tag attachment_url(piece, :photo, :fill, 400, 400, format: "jpg"), class: "img-responsive" %></li>
+    <% end %>
+  </ul>

@@ -18,11 +18,12 @@ ActiveRecord::Schema.define(version: 20160407153114) do
 
   create_table "artists", force: :cascade do |t|
     t.string   "shop_name"
+    t.string   "name_parameterize"
     t.string   "photo_id"
     t.text     "bio"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "pieces", force: :cascade do |t|

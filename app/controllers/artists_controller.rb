@@ -4,7 +4,7 @@ class ArtistsController < ApplicationController
   end
 
   def show
-    @artist = Artist.find_by :name_parameterize
+    @artist = Artist.find_by name_parameterize: params[:name_parameterize]
   end
 
   def edit

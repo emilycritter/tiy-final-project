@@ -1,2 +1,46 @@
-<h1>Pieces#show</h1>
-<p>Find me in app/views/pieces/show.html.erb</p>
+<div class="art">
+  <h1>Local Art</h1>
+  <h2>By: <%= @piece.artist.shop_name %></h2>
+  <div class="container">
+    <div class="flip-container" onclick="flipFunction(<%= @piece.id %>)">
+      <div class="card img-responsive" id="<%= @piece.id %>">
+        <div class="front">
+          <%= image_tag attachment_url(@piece, :photo, :fill, 400, 400, format: "jpg"), class: "img-responsive" %>
+        </div>
+        <div class="back">
+          <h4><%= @piece.title %></h4>
+          <h5>By: <%= @piece.artist.shop_name %></h5>
+          <h5><%= number_to_currency @piece.price %></h5>
+          <button type="button" name="button">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  var adjustSize = function() {
+    var width = $("img").css("width");
+    $(".back").css("width", width);
+    $(".back").css("height", width);
+    $(".front").css("height", width);
+  }
+  $( window ).load(function() {
+    adjustSize();
+  });
+  $( window ).resize(function() {
+    adjustSize();
+  });
+</script>
+
+<script type="text/javascript">
+  // function flipFunction(pieceId) {
+  //   if ($(".card").css("transform") === "matrix3d(1, 0, 0, 1, 0, 0)") {
+  //     $("#" + pieceId).css("transform", "rotateY(0deg)")
+  //     console.log($("#" + pieceId).css("transform"))
+  //   } else {
+  //     $("#" + pieceId).css("transform", "rotateY(180deg)")
+  //     console.log($("#" + pieceId).css("transform"))
+  //   }
+  // }
+</script>

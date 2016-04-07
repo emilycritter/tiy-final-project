@@ -2,6 +2,7 @@ class AddArtistModel < ActiveRecord::Migration
   def change
     create_table :artists do |t|
       t.string :shop_name
+      t.string :name_parameterize
       t.string :photo_id
       t.text :bio
       t.integer :user_id

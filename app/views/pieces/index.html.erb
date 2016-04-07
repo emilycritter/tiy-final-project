@@ -3,16 +3,18 @@
   <div class="container">
     <% @pieces.each do |piece| %>
       <div class="flip-container" onclick="flipFunction(<%= piece.id %>)">
-        <div class="card img-responsive" id="<%= piece.id %>">
-          <div class="front">
-            <%= image_tag attachment_url(piece, :photo, :fill, 400, 400, format: "jpg"), class: "img-responsive" %>
+        <%= link_to piece_path(id: piece.id) do %>
+          <div class="card img-responsive" id="<%= piece.id %>">
+            <div class="front">
+                <%= image_tag attachment_url(piece, :photo, :fill, 400, 400, format: "jpg"), class: "img-responsive" %>
+            </div>
+            <div class="back">
+              <h4><%= piece.title %></h4>
+              <h5>By: <%= piece.artist.shop_name %></h5>
+              <h5><%= number_to_currency piece.price %></h5>
+            </div>
           </div>
-          <div class="back">
-            <h4><%= piece.title %></h4>
-            <h5>By: <%= piece.artist.shop_name %></h5>
-            <h5><%= number_to_currency piece.price %></h5>
-          </div>
-        </div>
+        <% end %>
       </div>
     <% end %>
   </div>

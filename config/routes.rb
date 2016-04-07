@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'artists/index'
-
-  get 'artists/show'
-
-  get 'artists/edit'
-
   root 'pieces#index'
 
   resources :pieces
