@@ -6,15 +6,7 @@ if User.count == 0
   user.last_name = "Feldmos"
   user.email = "#{user.first_name}@example.com"
   user.password = "12345678"
-  user.artist_boolean = true
   user.phone_number = "8175551234"
-  user.bio = "Koby Feldmos, 32 years old (born May 3rd, 1983), Israeli painter born in Tel Aviv. Koby studied at the Art School in Tel Aviv, descendant of a family of jewelers, he specialized in gold and diamonds and designing jewelry in the family business. In recent years, Feldmos abandoned jewelry design in favor of painting. Painting is something he dealt with in the past, and today dedicates himself fully to the craft of painting, as well as developing a style that distinguishes him on the national stage as well as on the international stage in the 21st century.
-  The artist’s picturesque style is inspired by the French movement which developed in Post Impressionism in the 19th century, Pointillism. This technique is expressed in paintings which are made up of points. "
-
-  url = "https://img1.etsystatic.com/074/0/9019569/isla_500x500.16256715_2yma5zu5.jpg"
-  open(url, "rb") do |file|
-    user.photo = file
-  end
   user.save
 
   user = User.new
@@ -22,15 +14,7 @@ if User.count == 0
   user.last_name = "Miller"
   user.email = "#{user.first_name}@example.com"
   user.password = "12345678"
-  user.artist_boolean = true
   user.phone_number = "8175551234"
-  user.bio = "I am a painter living and working in Asia. I paint abstract and landscape oil paintings. Sometimes I paint dogs, horses, cats.
-  I learned oil painting skills when I studied in high school."
-
-  url = "https://img0.etsystatic.com/069/0/7895875/isla_500x500.16074800_hwh5zubh.jpg"
-  open(url, "rb") do |file|
-    user.photo = file
-  end
   user.save
 
   user = User.new
@@ -38,16 +22,7 @@ if User.count == 0
   user.last_name = "Pecson"
   user.email = "#{user.first_name}@example.com"
   user.password = "12345678"
-  user.artist_boolean = true
   user.phone_number = "8175551234"
-  user.bio = "I create modern art, in a style that's all my own. Impressionism, Expressionism, Abstract Art, Pop Art and more are synthesized into true Post Modern Art.
-  Each one of my paintings is original and hand painted. I usually paint on canvas, but I particularly enjoy painting on reclaimed items, like vinyl records, wood pallets or doors. I also paint custom portraits or other personalized paintings.
-  Much of my art celebrates the work of other American artists. Jimi Hendrix, The Grateful Dead, Janis Joplin, Johnny Cash and Elvis just to name a few. These Americans are my heroes. "
-
-  url = "https://img1.etsystatic.com/064/0/39775370/iusa_400x400.32504711_aw6k.jpg"
-  open(url, "rb") do |file|
-    user.photo = file
-  end
   user.save
 
   user = User.new
@@ -55,16 +30,7 @@ if User.count == 0
   user.last_name = "Stenberg"
   user.email = "#{user.first_name}@example.com"
   user.password = "12345678"
-  user.artist_boolean = true
   user.phone_number = "8175551234"
-  user.bio = "Hi, my name is Kim Stenberg. I used to be a college history professor for 20 years. After I turned 50, I somehow felt brave enough to quit my job to fulfill my dream of becoming a full-time painter!
-  Although I opened the account in 2011, I started listing on Etsy in 2013. I hope you enjoy my art!
-  I love to paint cats and dogs. If you send your pet's photos to kimstenbergart [!at] gmail.com, I will make beautiful pet portraits out of them. My pet portraits make perfect presents. "
-
-  url = "https://img1.etsystatic.com/105/1/6251547/il_570xN.914238169_igev.jpg"
-  open(url, "rb") do |file|
-    user.photo = file
-  end
   user.save
 
   user = User.new
@@ -72,7 +38,6 @@ if User.count == 0
   user.last_name = "Paulson"
   user.email = "#{user.first_name}@example.com"
   user.password = "12345678"
-  user.artist_boolean = false
   user.phone_number = "8175551234"
   user.save
 
@@ -81,14 +46,69 @@ if User.count == 0
   user.last_name = "Ritter"
   user.email = "#{user.first_name}@example.com"
   user.password = "12345678"
-  user.artist_boolean = false
   user.phone_number = "8175551234"
   user.save
 end
 
+if Artist.count == 0
+  artist = Artist.new
+  user = User.find_by id: 1
+  artist.user_id = user.id
+  artist.shop_name = "#{[user.first_name, user.last_name].join(' ')} Art"
+  artist.bio = "Koby Feldmos, 32 years old (born May 3rd, 1983), Israeli painter born in Tel Aviv. Koby studied at the Art School in Tel Aviv, descendant of a family of jewelers, he specialized in gold and diamonds and designing jewelry in the family business. In recent years, Feldmos abandoned jewelry design in favor of painting. Painting is something he dealt with in the past, and today dedicates himself fully to the craft of painting, as well as developing a style that distinguishes him on the national stage as well as on the international stage in the 21st century.
+  The artist’s picturesque style is inspired by the French movement which developed in Post Impressionism in the 19th century, Pointillism. This technique is expressed in paintings which are made up of points. "
+
+  url = "https://img1.etsystatic.com/074/0/9019569/isla_500x500.16256715_2yma5zu5.jpg"
+  open(url, "rb") do |file|
+    artist.photo = file
+  end
+  artist.save
+
+  artist = Artist.new
+  user = User.find_by id: 2
+  artist.user_id = user.id
+  artist.shop_name = "#{[user.first_name, user.last_name].join(' ')} Art"
+  artist.bio = "I am a painter living and working in Asia. I paint abstract and landscape oil paintings. Sometimes I paint dogs, horses, cats.
+  I learned oil painting skills when I studied in high school."
+
+  url = "https://img0.etsystatic.com/069/0/7895875/isla_500x500.16074800_hwh5zubh.jpg"
+  open(url, "rb") do |file|
+    artist.photo = file
+  end
+  artist.save
+
+  artist = Artist.new
+  user = User.find_by id: 3
+  artist.user_id = user.id
+  artist.shop_name = "#{[user.first_name, user.last_name].join(' ')} Art"
+  artist.bio = "I create modern art, in a style that's all my own. Impressionism, Expressionism, Abstract Art, Pop Art and more are synthesized into true Post Modern Art.
+  Each one of my paintings is original and hand painted. I usually paint on canvas, but I particularly enjoy painting on reclaimed items, like vinyl records, wood pallets or doors. I also paint custom portraits or other personalized paintings.
+  Much of my art celebrates the work of other American artists. Jimi Hendrix, The Grateful Dead, Janis Joplin, Johnny Cash and Elvis just to name a few. These Americans are my heroes. "
+
+  url = "https://img1.etsystatic.com/064/0/39775370/iusa_400x400.32504711_aw6k.jpg"
+  open(url, "rb") do |file|
+    artist.photo = file
+  end
+  artist.save
+
+  artist = Artist.new
+  user = User.find_by id: 4
+  artist.user_id = user.id
+  artist.shop_name = "#{[user.first_name, user.last_name].join(' ')} Art"
+  artist.bio = "Hi, my name is Kim Stenberg. I used to be a college history professor for 20 years. After I turned 50, I somehow felt brave enough to quit my job to fulfill my dream of becoming a full-time painter!
+  Although I opened the account in 2011, I started listing on Etsy in 2013. I hope you enjoy my art!
+  I love to paint cats and dogs. If you send your pet's photos to kimstenbergart [!at] gmail.com, I will make beautiful pet portraits out of them. My pet portraits make perfect presents. "
+
+  url = "https://img1.etsystatic.com/105/1/6251547/il_570xN.914238169_igev.jpg"
+  open(url, "rb") do |file|
+    artist.photo = file
+  end
+  artist.save
+end
+
 if Piece.count == 0
   art = Piece.new
-  art.user_id = 1
+  art.artist_id = 1
   art.title = 'Landscape painting , 40" - Beautiful & Colorful Abstract Tree'
   art.price = 420.00
   art.inventory = 1
@@ -112,7 +132,7 @@ DETAILS
   art.save
 
   art = Piece.new
-  art.user_id = 1
+  art.artist_id = 1
   art.title = 'Painting 40" Pink Flower, Modern style, luxury looks, thick layers'
   art.price = 360.00
   art.inventory = 1
@@ -137,7 +157,7 @@ DETAILS
   art.save
 
   art = Piece.new
-  art.user_id = 2
+  art.artist_id = 2
   art.title = "Oil Painting Original Artwork Seascape Sailing Boat and Lighthouse at Dawn Vivid Color Painted with Palette Knife Textured"
   art.price = 135.00
   art.inventory = 1
@@ -157,7 +177,7 @@ packing materials.'
   art.save
 
   art = Piece.new
-  art.user_id = 2
+  art.artist_id = 2
   art.title = "Canvas Art, Black and White Wall Art, Large Oil Painting"
   art.price = 250.00
   art.inventory = 1
@@ -176,7 +196,7 @@ This artwork is new and in excellent condition. Directly from my studio.'
   art.save
 
   art = Piece.new
-  art.user_id = 3
+  art.artist_id = 3
   art.title = 'Marilyn Monroe Art, 4"x24" Reclaimed Wood Art'
   art.price = 425.00
   art.inventory = 1
@@ -189,7 +209,7 @@ This artwork is new and in excellent condition. Directly from my studio.'
   art.save
 
   art = Piece.new
-  art.user_id = 3
+  art.artist_id = 3
   art.title = 'Pop Art Custom Dog Portrait Custom'
   art.price = 500.00
   art.inventory = 1
@@ -202,7 +222,7 @@ This artwork is new and in excellent condition. Directly from my studio.'
   art.save
 
   art = Piece.new
-  art.user_id = 3
+  art.artist_id = 3
   art.title = 'CUSTOM Pop Art Painting Remix, Large Canvas Painting 48"x48" Urban Art Mashup Pop Art Fusion'
   art.price = 1800.00
   art.inventory = 1
@@ -215,7 +235,7 @@ This artwork is new and in excellent condition. Directly from my studio.'
   art.save
 
   art = Piece.new
-  art.user_id = 4
+  art.artist_id = 4
   art.title = "Twelve Square Inches of Sunshine"
   art.price = 400.00
   art.inventory = 1
@@ -230,7 +250,7 @@ Oil on stretched canvas. The gallery-wrapped (no staples around edges) canvas is
   art.save
 
   art = Piece.new
-  art.user_id = 4
+  art.artist_id = 4
   art.title = "Hot Red Rose"
   art.price = 120.00
   art.inventory = 1
@@ -245,7 +265,7 @@ Oil on oil-primed linen on birch panel. The painting is mounted on Baltic birch 
   art.save
 
   art = Piece.new
-  art.user_id = 4
+  art.artist_id = 4
   art.title = "18\" x 24\", Custom Portrait from Your Photograph"
   art.price = 800.00
   art.inventory = 1
@@ -258,7 +278,7 @@ Oil on oil-primed linen on birch panel. The painting is mounted on Baltic birch 
   art.save
 
   art = Piece.new
-  art.user_id = 4
+  art.artist_id = 4
   art.title = "6\" x 8\", Custom Pet Portrait from Your Photograph"
   art.price = 135.00
   art.inventory = 1

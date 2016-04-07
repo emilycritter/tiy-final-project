@@ -1,6 +1,6 @@
 class Piece < ActiveRecord::Base
-  belongs_to :user
-  
+  belongs_to :artist
+
   validates :title, presence: true
 
   attachment :photo

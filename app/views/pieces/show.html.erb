@@ -1,2 +1,10 @@
-<h1>Pieces#show</h1>
-<p>Find me in app/views/pieces/show.html.erb</p>
+<div class="container">
+  <h1>Local Art</h1>
+  <h2><%= @piece.title %></h2>
+  <h2>By: <%= link_to @piece.artist.shop_name, artist_path(name_parameterize: @piece.artist.name_parameterize) %></h2>
+
+    <%= image_tag attachment_url(@piece, :photo, :fill, 400, 400, format: "jpg"), class: "img-responsive" %>
+
+    <h5><%= number_to_currency @piece.price %></h5>
+    <button type="button" name="button">Add to Cart</button>
+</div>
