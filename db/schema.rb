@@ -32,12 +32,11 @@ ActiveRecord::Schema.define(version: 20160411195044) do
   create_table "order_items", force: :cascade do |t|
     t.integer  "order_id"
     t.integer  "piece_id"
-    t.boolean  "shipped",       default: false
-    t.integer  "quantity",      default: 0
-    t.decimal  "shipping_cost", default: 0.0
-    t.decimal  "price",         default: 0.0
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.boolean  "shipped",    default: false
+    t.integer  "quantity",   default: 0
+    t.decimal  "price",      default: 0.0
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "orders", force: :cascade do |t|

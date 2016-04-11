@@ -5,7 +5,6 @@ class CreateOrderItems < ActiveRecord::Migration
       t.integer :piece_id
       t.boolean :shipped, default: false
       t.integer :quantity, default: 0
-      t.decimal :shipping_cost, default: 0
       t.decimal :price, default: 0
 
       t.timestamps null: false
