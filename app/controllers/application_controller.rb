@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_action do
     if session[:user_id].present?
       @current_user = User.find_by id: session[:user_id]
+      @current_ip = remote_ip
     end
   end
 
@@ -24,11 +25,11 @@ class ApplicationController < ActionController::Base
   end
 
   def remote_ip
-     if request.remote_ip == '127.0.0.1' || request.remote_ip == '::1'
-       '123.45.67.89'
-     else
-       request.remote_ip
-     end
+    if request.remote_ip == '127.0.0.1' || request.remote_ip == '::1'
+      '123.45.67.89'
+    else
+      request.remote_ip
+    end
   end
 
 end
