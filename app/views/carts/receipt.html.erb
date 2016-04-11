@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="cart">
+    <h3>Thank you for your order!</h3>
+    <% if @order %>
+      <h3><small><%= @order.description %></small></h3>
+      <% @order.order_items.each do |order_item| %>
+        <hr>
+        <div class="order-item">
+          <div><%= image_tag attachment_url(order_item.piece, :photo, :fill, 150, 150, format: "jpg") %></div>
+          <ul>
+            <li>Title: <%= order_item.piece.title %></li>
+            <li>Artist: <%= order_item.piece.artist.shop_name %></li>
+            <li>Quantity: <%= order_item.quantity %></li>
+            <li>Total Price: <%= number_to_currency order_item.total_price %></li>
+          </ul>
+        </div>
+      <% end %>
+      <hr>
+      <h5 style="text-align: right;">Order Total: <%= number_to_currency @order.total_price %></h5>
+      <div class="checkout">
+          <%= link_to 'Continue Shopping', root_path, class: 'btn btn-default' %>
+      </div>
+    <% end %>
+  </div>
+</div>

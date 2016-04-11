@@ -1,6 +1,6 @@
 class PiecesController < ApplicationController
   def index
-    @pieces = Piece.all.order("title asc")
+    @pieces = Piece.where('inventory > 0').order("title asc")
     search_text = params[:search]
     if search_text.present?
       @pieces = @pieces.search_all(search_text)

@@ -6,5 +6,7 @@
     <%= image_tag attachment_url(@piece, :photo, :fill, 400, 400, format: "jpg"), class: "img-responsive" %>
 
     <h5><%= number_to_currency @piece.price %></h5>
-    <button type="button" name="button">Add to Cart</button>
+    <%= link_to add_to_cart_path(piece_id: @piece.id), method: :post do %>
+      <button type="button" name="button">Add to Cart</button>
+    <% end %>
 </div>
