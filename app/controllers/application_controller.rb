@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
       redirect_to sign_in_path, alert: 'Please Sign In'
     end
   end
-  
+
   def store_location
     session[:return_to] = request.fullpath if request.get? && controller_name != "user" && controller_name != "session"
   end
@@ -22,4 +22,13 @@ class ApplicationController < ActionController::Base
   def redirect_back_or_default(default)
     redirect_to(session[:return_to] || default)
   end
+
+  def remote_ip
+     if request.remote_ip == '127.0.0.1' || request.remote_ip == '::1'
+       '123.45.67.89'
+     else
+       request.remote_ip
+     end
+  end
+
 end

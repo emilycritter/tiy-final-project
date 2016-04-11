@@ -16,5 +16,4 @@ class Artist < ActiveRecord::Base
     self[column] = self.shop_name.parameterize
   end
 
-
 end
