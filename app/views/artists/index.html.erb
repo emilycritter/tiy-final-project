@@ -1,11 +1,13 @@
-<div class="wrapper">
-  <h1>Artists</h1>
-  <%= form_tag artists_path, method: :get do %>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search" %>
-  <% end %>
-</div>
 <div class="container">
+  <div class="wrapper">
+    <h1>Artists</h1>
+    <%= form_tag artists_path, method: :get do %>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "Search" %>
+    <% end %>
+    <div id="mapid"></div>
+    <br>
+  </div>
   <% @artists.each do |artist| %>
     <%= link_to artist.shop_name, artist_path(name_parameterize: artist.name_parameterize) %>
     <ul>
@@ -15,3 +17,19 @@
     </ul>
   <% end %>
 </div>
+
+<script type="text/javascript">
+  $(window).ready(function(){
+    var mymap = L.map('mapid').setView([29.73, -95.39], 10);
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+      maxZoom: 18,
+      id: 'emilycritter.pia1bd72',
+      accessToken: 'pk.eyJ1IjoiZW1pbHljcml0dGVyIiwiYSI6ImNpbWdmZXhmYzAyMDV1NGx2bHM0MTNzNGYifQ.7KYzLItfXBfg5Zs-757BGw'
+  }).addTo(mymap);
+  <% @artists.each do |artist| %>
+    L.marker([<%= artist.latitude %>, <%= artist.longitude %>]).addTo(mymap)
+      .bindPopup('<b><%= artist.shop_name %></b><%= artist.location %><br/> <%= image_tag attachment_url(artist, :photo, :fill, 160, 160), class: "img-responsive" %>');
+  <% end %>
+  })
+</script>

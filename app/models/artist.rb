@@ -13,7 +13,7 @@ class Artist < ActiveRecord::Base
   after_validation :geocode
 
   include PgSearch
-  pg_search_scope :search_all, :against => [:shop_name, :bio]
+  pg_search_scope :search_all, :against => [:shop_name, :bio, :location]
 
   def define_parameterize(column)
     self[column] = self.shop_name.parameterize
