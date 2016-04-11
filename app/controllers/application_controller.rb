@@ -9,6 +9,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def authenticate_user!
+    if @current_user.nil?
+      redirect_to sign_in_path, alert: 'Please Sign In'
+    end
+  end
+  
   def store_location
     session[:return_to] = request.fullpath if request.get? && controller_name != "user" && controller_name != "session"
   end

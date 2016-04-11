@@ -9,4 +9,8 @@ class ArtistsController < ApplicationController
 
   def edit
   end
+
+  def artist_params
+    params.require(:artist).permit(:shop_name, :bio, :location, :photo)
+  end
 end

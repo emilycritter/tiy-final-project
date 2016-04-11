@@ -1,10 +1,11 @@
 <h1>Artists</h1>
-
-<% @artists.each do |artist| %>
-  <%= link_to artist.shop_name, artist_path(name_parameterize: artist.name_parameterize) %>
-  <ul>
-    <% artist.pieces.each do |piece| %>
-      <li><%= piece.title %></li>
-    <% end %>
-  </ul>
-<% end %>
+<div class="container">
+  <% @artists.each do |artist| %>
+    <%= link_to artist.shop_name, artist_path(name_parameterize: artist.name_parameterize) %>
+    <ul>
+      <% artist.pieces.each do |piece| %>
+        <li><%= link_to piece.title, piece_path(id: piece.id) %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
