@@ -1,8 +1,10 @@
+require 'open-uri'
+
 class Api::UsersController < ApplicationController
   protect_from_forgery with: :null_session
 
   def index
-    @users = User.all.order("full_name asc")
+    @users = User.all.order("last_name asc")
   end
 
   def show
