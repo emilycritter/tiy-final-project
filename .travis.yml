@@ -1,8 +1,15 @@
 language: ruby
 rvm:
-  - 2.3.0
+- 2.3.0
 addons:
-  postgresql: "9.4"
+  postgresql: '9.4'
 before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
-  - cp config/database.yml.travis config/database.yml
+- psql -c 'create database travis_ci_test;' -U postgres
+- cp config/database.yml.travis config/database.yml
+deploy:
+  provider: heroku
+  api_key:
+    secure: KVoK7WcD8SVCx0eSe+Tv4u3yd14Mn4CPCgKur5WOyY98z5B/xoY9XKUnS8tjk9sKelp2Vfa/1MdVYUXW8fiGNUsNwEWDeueIhmI9C4jGycKfCOgzX0RfideiETqTbmgO+S/T3kv7ulY2fPwV2LTbufYLUkprAWC6JcKlPCMY0CVbQeBgDT7k5N6/x7dCxCoyN4Nt1Eax2MYRVbI2y4+yFRz97RFpWQe8HrkLLVujqTDQQlK5KGYg9/6VfmO7usxSyR3i1xk8nzD07H5lZzPHoVnsKnyNeQ69qevDGTTEimIQbmN9uawB34kZ1YbUcGScGgp/7TTjsSUrH6L941wQoxcev3TTZVUw+tsEwwhvpZEV70XmyWrRNTkC/W/ogEeiHpPJ9d5q3Sn7H6tC2HDjIbDgbnTLBGPAHc8OgJCMT1EM4n2rBkdRDPWh2WGv+84cXp+dNIm/6acHr4x2jgBJJhYTggj78veoVJYLyNONe1HNPT71KczrG25fsWwRPbJCrQMhHxTXsld2us52Y2XfMgwpvAbV/DlrrHpEoi2oubyaua3iXZUnkfL6zJPJMX+cLR1KzyoX6FXBVa8tMu0UL3qoXTviFoqrwpRPT/c5ysVdeZyAfznZ1z6awB+b0F920nu2xQKsgt3TMVhn4GIXCEXRlR53R+1LhzX6F1GoopA=
+  app: buy-local-art
+  on:
+    repo: emilycritter/tiy-final-project
