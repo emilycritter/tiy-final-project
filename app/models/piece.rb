@@ -4,4 +4,8 @@ class Piece < ActiveRecord::Base
   validates :title, presence: true
 
   attachment :photo
+
+  def price_in_cents
+    price * 100
+  end
 end
