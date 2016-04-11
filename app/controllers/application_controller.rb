@@ -6,6 +6,13 @@ class ApplicationController < ActionController::Base
   before_action do
     if session[:user_id].present?
       @current_user = User.find_by id: session[:user_id]
+      @current_ip = remote_ip
+    end
+  end
+
+  def authenticate_user!
+    if @current_user.nil?
+      redirect_to sign_in_path, alert: 'Please Sign In'
     end
   end
 
@@ -16,4 +23,13 @@ class ApplicationController < ActionController::Base
   def redirect_back_or_default(default)
     redirect_to(session[:return_to] || default)
   end
+
+  def remote_ip
+    if request.remote_ip == '127.0.0.1' || request.remote_ip == '::1'
+      '123.45.67.89'
+    else
+      request.remote_ip
+    end
+  end
+
 end

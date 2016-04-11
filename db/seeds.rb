@@ -54,6 +54,7 @@ if Artist.count == 0
   artist = Artist.new
   user = User.find_by id: 1
   artist.user_id = user.id
+  artist.location = "3402 Montrose Blvd, Houston, TX"
   artist.shop_name = "#{[user.first_name, user.last_name].join(' ')} Art"
   artist.bio = "Koby Feldmos, 32 years old (born May 3rd, 1983), Israeli painter born in Tel Aviv. Koby studied at the Art School in Tel Aviv, descendant of a family of jewelers, he specialized in gold and diamonds and designing jewelry in the family business. In recent years, Feldmos abandoned jewelry design in favor of painting. Painting is something he dealt with in the past, and today dedicates himself fully to the craft of painting, as well as developing a style that distinguishes him on the national stage as well as on the international stage in the 21st century.
   The artist’s picturesque style is inspired by the French movement which developed in Post Impressionism in the 19th century, Pointillism. This technique is expressed in paintings which are made up of points. "
@@ -67,6 +68,7 @@ if Artist.count == 0
   artist = Artist.new
   user = User.find_by id: 2
   artist.user_id = user.id
+  artist.location = "4203 Montrose Blvd, Houston, TX"
   artist.shop_name = "#{[user.first_name, user.last_name].join(' ')} Art"
   artist.bio = "I am a painter living and working in Asia. I paint abstract and landscape oil paintings. Sometimes I paint dogs, horses, cats.
   I learned oil painting skills when I studied in high school."
@@ -80,6 +82,7 @@ if Artist.count == 0
   artist = Artist.new
   user = User.find_by id: 3
   artist.user_id = user.id
+  artist.location = "4302 Montrose Blvd, Houston, TX"
   artist.shop_name = "#{[user.first_name, user.last_name].join(' ')} Art"
   artist.bio = "I create modern art, in a style that's all my own. Impressionism, Expressionism, Abstract Art, Pop Art and more are synthesized into true Post Modern Art.
   Each one of my paintings is original and hand painted. I usually paint on canvas, but I particularly enjoy painting on reclaimed items, like vinyl records, wood pallets or doors. I also paint custom portraits or other personalized paintings.
@@ -94,6 +97,7 @@ if Artist.count == 0
   artist = Artist.new
   user = User.find_by id: 4
   artist.user_id = user.id
+  artist.location = "2403 Montrose Blvd, Houston, TX"
   artist.shop_name = "#{[user.first_name, user.last_name].join(' ')} Art"
   artist.bio = "Hi, my name is Kim Stenberg. I used to be a college history professor for 20 years. After I turned 50, I somehow felt brave enough to quit my job to fulfill my dream of becoming a full-time painter!
   Although I opened the account in 2011, I started listing on Etsy in 2013. I hope you enjoy my art!

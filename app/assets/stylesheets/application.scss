@@ -1,6 +1,9 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 @import 'pieces';
+@import 'artists';
+@import 'users';
+@import 'sessions';
 
 $font: 'Open Sans Condensed', sans-serif;
 
