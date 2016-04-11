@@ -2,7 +2,7 @@ class Artist < ActiveRecord::Base
   before_create { define_parameterize(:name_parameterize) }
 
   has_many :pieces, dependent: :destroy
-  has_one :user
+  belongs_to :user
 
   validates :shop_name, presence: true
   validates :name_parameterize, uniqueness: true
