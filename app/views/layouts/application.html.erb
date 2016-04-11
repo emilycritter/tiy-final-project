@@ -16,6 +16,9 @@
     <% if @current_user %>
       Hello, <%= @current_user.full_name %>
       <%= link_to "Sign Out", sign_out_path %>
+      <%= link_to cart_path do %>
+        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+      <% end %>
     <% else %>
       <%= link_to "Sign In", sign_in_path %>
     <% end %>
