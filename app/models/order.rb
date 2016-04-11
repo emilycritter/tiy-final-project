@@ -9,7 +9,7 @@ class Order < ActiveRecord::Base
   validates :user_id, :status, presence: true
 
   def description
-    "Order ##{id}: #{order_items.map{|order_item| order_item.piece.title}.join(', ')}"
+    "Order Confirmation ##{order_confirmation}: #{order_items.map{|order_item| order_item.piece.title}.join(', ')}"
   end
 
   def total_price

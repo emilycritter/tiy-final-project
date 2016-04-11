@@ -24,7 +24,8 @@ class CartsController < ApplicationController
       order_item.price = @piece.price
       order_item.quantity = 1
     end
-    order_item.save!
+
+    order_item.save! if order_item.quantity <= @piece.inventory
 
     redirect_to cart_path
   end
@@ -38,6 +39,28 @@ class CartsController < ApplicationController
   end
 
   def process_payment
+    @order = Order.find_by status: 'cart', user_id: @current_user.id
+
+    card_token = params[:stripeToken]
+
+    Stripe.api_key = "sk_test_wHzmUvlgjN7NWOsoIRsR2sJT"
+
+    Stripe::Charge.create(
+      :amount => @order.total_price_in_cents,
+      :currency => "usd",
+      :source => card_token,
+      :description => @order.description
+    )
+
+    @order.update status: 'payment_received'
+
+    # update inventory
+    @order.order_items.each do |order_item|
+      order_item.piece.inventory -= order_item.quantity
+      order_item.piece.save!
+    end
+
+    redirect_to receipt_path(order_confirmation: @order.order_confirmation)
   end
 
   def receipt
