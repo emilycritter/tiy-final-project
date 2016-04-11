@@ -1,5 +1,6 @@
 class Piece < ActiveRecord::Base
   belongs_to :artist
+  has_many :order_items
 
   validates :title, presence: true
 
