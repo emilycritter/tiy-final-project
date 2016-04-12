@@ -14,4 +14,10 @@ class Piece < ActiveRecord::Base
     price * 100
   end
 
+  def price_formatted
+    a,b = sprintf("%0.2f", price).split('.')
+    a.gsub!(/(\d)(?=(\d{3})+(?!\d))/, '\\1,')
+    "$#{a}.#{b}"
+  end
+
 end
