@@ -8,7 +8,7 @@ var PieceTile = React.createClass({
       <a href={piece.piece_url}>
         <div className="card img-responsive" id="{piece.id}">
           <div className="front">
-              <img src={piece.photo_url} className="img-responsive" />
+              <img src={piece.photo_url} className="img-responsive my-img" />
               <div className="price">{piece.price_formatted}</div>
           </div>
           <div className="back">

@@ -9,6 +9,7 @@ class ArtistsController < ApplicationController
 
   def show
     @artist = Artist.find_by name_parameterize: params[:name_parameterize]
+    @pieces = Piece.where('inventory > ? AND id = ?', 0, @artist.id).order("title asc")
   end
 
   def edit
