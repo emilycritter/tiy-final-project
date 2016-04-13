@@ -111,6 +111,22 @@ footer {
       }
     }
   }
+  .my-row {
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+    justify-content: center;
+    .my-large-column {
+      flex: 3;
+      padding: 5px;
+      max-width: 100%;
+    }
+    .my-small-column {
+      flex: 1;
+      padding: 5px;
+      max-width: 100%;
+    }
+  }
 }
 
 @media screen and (max-width: 1024px) {
@@ -119,6 +135,14 @@ footer {
   }
   .art {
     // background-color: red;
+  }
+  .my-large-column {
+    flex: 2;
+    padding: 5px;
+  }
+  .my-small-column {
+    flex: 1;
+    padding: 5px;
   }
 }
 
@@ -129,6 +153,17 @@ footer {
       a {
         padding: 0;
       }
+    }
+  }
+  .my-row {
+    flex-direction: column;
+    .my-large-column {
+      flex: 1;
+      padding: 5px;
+    }
+    .my-small-column {
+      flex: 1;
+      padding: 5px;
     }
   }
 }
