@@ -3,5 +3,4 @@ json.user do
 end
 json.meta do
   json.time Time.now
-  json.current_user @current_user if @current_user.present?
 end

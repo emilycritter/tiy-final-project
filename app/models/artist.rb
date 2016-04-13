@@ -19,4 +19,11 @@ class Artist < ActiveRecord::Base
     self[column] = self.shop_name.parameterize
   end
 
+  def photo_url
+    Refile.attachment_url(self, :photo, :fill, 300, 300, format: "jpg")
+  end
+
+  def artist_url
+    Rails.application.routes.url_helpers.artist_path(name_parameterize: name_parameterize)
+  end
 end

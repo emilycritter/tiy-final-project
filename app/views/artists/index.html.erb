@@ -5,7 +5,7 @@
       <%= text_field_tag :search, params[:search] %>
       <%= submit_tag "Search" %>
     <% end %>
-    <div id="mapid"></div>
+    <%= react_component('MapDisplay', { artists: @artists }) %>
     <br>
   </div>
   <% @artists.each do |artist| %>
@@ -18,7 +18,7 @@
   <% end %>
 </div>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   $(window).ready(function(){
     var mymap = L.map('mapid').setView([29.73, -95.39], 10);
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -26,10 +26,29 @@
       maxZoom: 18,
       id: 'emilycritter.pia1bd72',
       accessToken: 'pk.eyJ1IjoiZW1pbHljcml0dGVyIiwiYSI6ImNpbWdmZXhmYzAyMDV1NGx2bHM0MTNzNGYifQ.7KYzLItfXBfg5Zs-757BGw'
-  }).addTo(mymap);
-  <% @artists.each do |artist| %>
-    L.marker([<%= artist.latitude %>, <%= artist.longitude %>]).addTo(mymap)
-      .bindPopup('<b><%= artist.shop_name %></b><%= artist.location %><br/> <%= image_tag attachment_url(artist, :photo, :fill, 160, 160), class: "img-responsive" %>');
-  <% end %>
-  })
-</script>
+    }).addTo(mymap);
+
+    <% @artists.each do |artist| %>
+      L.marker([<%= artist.latitude %>, <%= artist.longitude %>]).addTo(mymap)
+        .bindPopup('<b><%= artist.shop_name %></b><%= artist.location %><br/> <%= image_tag attachment_url(artist, :photo, :fill, 160, 160), class: "img-responsive" %>');
+    <% end %>
+
+    mymap.locate({setView: true, maxZoom: 16});
+    function onLocationFound(e) {
+      var radius = e.accuracy / 2;
+      var latitude = e.latlng.lat.toFixed(5);
+      var longitude = e.latlng.lng.toFixed(5);
+      L.marker(e.latlng).addTo(mymap)
+          .bindPopup("<b>Current Location</b>(" + latitude + ", " + longitude + ")").openPopup();
+      L.circle(e.latlng, radius).addTo(mymap);
+    }
+
+    mymap.on('locationfound', onLocationFound);
+    function onLocationError(e) {
+        alert(e.message);
+    }
+
+    mymap.on('locationerror', onLocationError);
+
+  });
+</script> -->
