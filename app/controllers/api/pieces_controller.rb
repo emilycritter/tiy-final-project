@@ -6,9 +6,18 @@ class Api::PiecesController < ApplicationController
   def index
     @pieces = Piece.where('inventory > 0').order("title asc")
     search_text = params[:search]
-    if search_text.present?
-      @pieces = @pieces.search_all(search_text)
+    search_min = params[:search_min]
+    search_max = params[:search_max]
+
+    @pieces = @pieces.search_all(search_text) if search_text.present?
+    if search_min.present? && search_max.present?
+      @pieces = @pieces.where('? <= price AND price <= ?', search_min, search_max)
+    elsif search_min.present?
+      @pieces = @pieces.where('? <= price', search_min)
+    elsif search_max.present?
+      @pieces = @pieces.where('price <= ?', search_max)
     end
+    @pieces_count = @pieces.count
   end
 
   def show
