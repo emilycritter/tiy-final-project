@@ -3,6 +3,8 @@ json.shop_name artist.shop_name
 json.name_parameterize artist.name_parameterize
 json.artist_piece_count artist.pieces.count
 json.bio artist.bio
+json.artist_url artist.artist_url
+json.photo_url artist.photo_url
 
 json.user_id artist.user_id
 json.first_name artist.user.first_name
