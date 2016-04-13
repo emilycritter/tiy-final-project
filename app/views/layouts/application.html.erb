@@ -16,22 +16,33 @@
     Stripe.setPublishableKey('pk_test_5JVSPhieKsIPIFTadSnKl3vs');
   </script>
 
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
 </head>
 <body>
   <header>
-    <nav>
-      <%= link_to "Home", root_path %>
-      <%= link_to "Artists", artists_path %>
+    <h1>buy.local.art</h1>
+    <ul class="nav nav-tabs nav-justified">
+      <li><%= link_to "Home", root_path %></li>
+      <li><%= link_to "Artists", artists_path %></li>
+
       <% if @current_user %>
-        Hello, <%= @current_user.full_name %>
-        <%= link_to "Sign Out", sign_out_path %>
-        <%= link_to cart_path do %>
-          <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-        <% end %>
+        <li>
+          <%= link_to user_path(id: @current_user.id) do %>
+            <%= @current_user.full_name %>
+          <% end %>
+        </li>
+        <li><%= link_to "Sign Out", sign_out_path %></li>
+        <li>
+          <%= link_to cart_path do %>
+            View Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+          <% end %>
+        </li>
       <% else %>
-        <%= link_to "Sign In", sign_in_path %>
+        <li><%= link_to "Sign In", sign_in_path %></li>
       <% end %>
-    </nav>
+    </ul>
+
   </header>
 
   <div class="content-wrapper">

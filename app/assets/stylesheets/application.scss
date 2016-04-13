@@ -27,6 +27,16 @@ body:before {
 	width:0;
 	// margin-top:-32767px;
 }
+header {
+  h1 {
+    text-align: center;
+    margin: 10px auto;
+  }
+}
+.nav {
+  max-height: 44px;
+}
+
 .content-wrapper {
   min-height: 100%;
   padding-bottom: 70px;
@@ -109,6 +119,17 @@ footer {
   }
   .art {
     // background-color: red;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .nav {
+    max-height: 150px;
+    li {
+      a {
+        padding: 0;
+      }
+    }
   }
 }
 

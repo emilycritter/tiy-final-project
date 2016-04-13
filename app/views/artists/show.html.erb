@@ -1,16 +1,27 @@
 <div class="art">
-  <h1>Artist: <%= @artist.shop_name %> <small><%= @artist.location %></small></h1>
-  <% if @artist == @current_user.artist %>
-    <h1><%= link_to "Add Art", new_piece_path %></h1>
-  <% end %>
-
   <div class="container">
-    <div id="mapid"></div>
-    <blockquote>
-      <%= @artist.bio %>
-    </blockquote>
+    <h1>Artist: <%= @artist.shop_name %> <small><%= @artist.location %></small></h1>
+    <div class="container">
+      <div id="mapid"></div>
+      <blockquote>
+        <%= @artist.bio %>
+        <% if @artist == @current_user.artist %>
+          &nbsp;&nbsp;&nbsp;
+          <%= link_to edit_artist_path(id: @artist.id) do %>
+            <i class="fa fa-edit" aria-hidden="true"></i> Edit Profile
+          <% end %>
+        <% end %>
+      </blockquote>
+      <% if @artist == @current_user.artist %>
+        <h1>
+          <%= link_to new_piece_path do %>
+            <i class="fa fa-paint-brush" aria-hidden="true"></i> Add Art
+          <% end %>
+        </h1>
+      <% end %>
+    </div>
+    <%= react_component('PiecesListByArtist', { data: @artist.id, max_entries: @artist.pieces.count  }) %>
   </div>
-  <%= react_component('PiecesListByArtist', { data: @artist.id, max_entries: @artist.pieces.count  }) %>
 </div>
 
 <script type="text/javascript">

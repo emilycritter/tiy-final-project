@@ -1,12 +1,47 @@
 <div class="art">
-  <div class="wrapper">
-    <h1>Local Art</h1>
-    <%= form_tag root_path, method: :get do %>
-      <%= text_field_tag :search, params[:search] %>
-      <%= submit_tag "Search" %>
-    <% end %>
+
+  <div class="row">
+
+    <div class="col-md-2">
+      <br>
+      <h5>Shop by Category</h5>
+      <hr>
+
+      <br>
+      <h5>Shop by Price</h5>
+      <hr>
+
+      <br>
+      <h5>Shop by Location</h5>
+      <hr>
+      <ul>
+        <li>
+          Local
+        </li>
+        <li>
+          Anywhere
+        </li>
+      </ul>
+
+      <br>
+      <h5>Search</h5>
+      <hr>
+      <ul class="nav nav-pills nav-stacked">
+        <li>
+          <%= form_tag root_path, method: :get do %>
+            <%= text_field_tag :search, params[:search] %>
+            <%= submit_tag "Search" %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-9">
+      <%= react_component('PiecesList') %>
+    </div>
+
   </div>
-  <%= react_component('PiecesList') %>
+
 </div>
 
 
@@ -24,16 +59,4 @@
   $( window ).resize(function() {
     adjustSize();
   });
-</script>
-
-<script type="text/javascript">
-  // function flipFunction(pieceId) {
-  //   if ($(".card").css("transform") === "matrix3d(1, 0, 0, 1, 0, 0)") {
-  //     $("#" + pieceId).css("transform", "rotateY(0deg)")
-  //     console.log($("#" + pieceId).css("transform"))
-  //   } else {
-  //     $("#" + pieceId).css("transform", "rotateY(180deg)")
-  //     console.log($("#" + pieceId).css("transform"))
-  //   }
-  // }
 </script>
