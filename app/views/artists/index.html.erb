@@ -36,8 +36,10 @@
   mymap.locate({setView: true, maxZoom: 16});
   function onLocationFound(e) {
     var radius = e.accuracy / 2;
+    var latitude = e.latlng.lat.toFixed(5);
+    var longitude = e.latlng.lng.toFixed(5);
     L.marker(e.latlng).addTo(mymap)
-        .bindPopup("<b>Current Location</b><br/>You are within " + radius + " meters from this point</br>" + e.latlng).openPopup();
+        .bindPopup("<b>Current Location</b>(" + latitude + ", " + longitude + ")").openPopup();
     L.circle(e.latlng, radius).addTo(mymap);
   }
 
