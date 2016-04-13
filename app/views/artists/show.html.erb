@@ -1,5 +1,9 @@
 <div class="art">
   <h1>Artist: <%= @artist.shop_name %> <small><%= @artist.location %></small></h1>
+  <% if @artist == @current_user.artist %>
+    <h1><%= link_to "Add Art", new_piece_path %></h1>
+  <% end %>
+
   <div class="container">
     <div id="mapid"></div>
     <blockquote>

@@ -4,7 +4,11 @@ class Api::PiecesController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
   def index
-    @pieces = Piece.all.order("title asc")
+    @pieces = Piece.where('inventory > 0').order("title asc")
+    search_text = params[:search]
+    if search_text.present?
+      @pieces = @pieces.search_all(search_text)
+    end
   end
 
   def show
@@ -13,8 +17,7 @@ class Api::PiecesController < ApplicationController
 
   def create
     @piece = Piece.new piece_params
-
-    @piece.artist = @current_user
+    @piece.artist = @current_user.artist if @current_user.artist
 
     url = params[:piece][:photo_url]
     if url.present?
@@ -59,7 +62,7 @@ class Api::PiecesController < ApplicationController
   end
 
   def piece_params
-    params.require(:piece).permit(:title, :price, :inventory, :description, :photo)
+    params.require(:piece).permit(:title, :price, :inventory, :description, :photo, :artist_id)
   end
 
 end

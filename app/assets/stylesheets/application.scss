@@ -17,6 +17,22 @@ h1, h2, h3, h4, h5, h6, p, a, body {
 blockquote {
   border: 0;
 }
+html, body {
+  height: 100%;
+}
+body:before {
+	content:"";
+	height:100%;
+	float:left;
+	width:0;
+	// margin-top:-32767px;
+}
+.content-wrapper {
+  min-height: 100%;
+  padding-bottom: 150px;
+  margin-bottom: 20px;
+}
+
 .art {
   font-family: $font;
   .container {
@@ -24,7 +40,7 @@ blockquote {
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
-    margin: 20px auto;
+    margin: 20px auto 0;
     padding: 0;
     position: relative;
     // border: 1px solid #333;
@@ -78,6 +94,14 @@ blockquote {
       }
     }
   }
+}
+
+footer {
+  background-color: lighten($grey, 60%);
+  position: relative;
+	margin-top: -150px;
+	height: 150px;
+	clear:both;
 }
 
 @media screen and (max-width: 1024px) {
