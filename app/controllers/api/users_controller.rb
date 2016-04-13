@@ -30,10 +30,14 @@ class Api::UsersController < ApplicationController
   def update
     @user = User.find_by id: params[:id]
 
-    if @user.update user_params
-      render :show
+    if @current_user && @current_user == @user
+      if @user.update user_params
+        render :show
+      else
+        render json: {errors: @user.errors}, status: 422
+      end
     else
-      render json: {errors: @user.errors}, status: 422
+      render json: {errors: @user.errors}, status: 401      
     end
   end
 
@@ -41,16 +45,6 @@ class Api::UsersController < ApplicationController
     @user = User.find_by id: @current_user.id
     @user.destroy
     head :ok
-  end
-
-  def update_location
-    @user = User.find_by id: @current_user.id
-
-    if @user.update user_params
-      render :show
-    else
-      render json: {errors: @user.errors}, status: 422
-    end
   end
 
   private
