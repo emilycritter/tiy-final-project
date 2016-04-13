@@ -7,7 +7,7 @@
     </div>
     <div class="col-md-6" style="max-width: 100%;">
       <h2>By: <%= link_to @piece.artist.shop_name, artist_path(name_parameterize: @piece.artist.name_parameterize) %></h2>
-      <% if @current_user == @piece.artist.user %>
+      <% if @current_user && @current_user == @piece.artist.user %>
         <h4>
           <%= link_to edit_piece_path(id: @piece.id) do %>
             <i class="fa fa-edit" aria-hidden="true"></i> edit

@@ -5,14 +5,14 @@
       <div id="mapid"></div>
       <blockquote>
         <%= @artist.bio %>
-        <% if @artist == @current_user.artist %>
+        <% if @current_user && @artist == @current_user.artist %>
           &nbsp;&nbsp;&nbsp;
           <%= link_to edit_artist_path(id: @artist.id) do %>
             <i class="fa fa-edit" aria-hidden="true"></i> Edit Profile
           <% end %>
         <% end %>
       </blockquote>
-      <% if @artist == @current_user.artist %>
+      <% if @current_user && @artist == @current_user.artist %>
         <h1>
           <%= link_to new_piece_path do %>
             <i class="fa fa-paint-brush" aria-hidden="true"></i> Add Art
