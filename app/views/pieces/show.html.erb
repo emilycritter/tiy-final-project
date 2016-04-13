@@ -1,12 +1,40 @@
 <div class="container">
   <h1>Local Art</h1>
-  <h2><%= @piece.title %></h2>
-  <h2>By: <%= link_to @piece.artist.shop_name, artist_path(name_parameterize: @piece.artist.name_parameterize) %></h2>
 
-    <%= image_tag attachment_url(@piece, :photo, :fill, 400, 400, format: "jpg"), class: "img-responsive" %>
+  <div class="row">
+    <div class="col-md-6">
+      <h2><%= @piece.title %></h2>
+      <%= image_tag attachment_url(@piece, :photo, :fill, 400, 400, format: "jpg"), class: "img-responsive" %>
+    </div>
+    <div class="col-md-6" style="max-width: 100%;">
+      <h2>By: <%= link_to @piece.artist.shop_name, artist_path(name_parameterize: @piece.artist.name_parameterize) %></h2>
+      <% if @current_user == @piece.artist.user %>
+        <h4>
+          <%= link_to edit_piece_path(id: @piece.id) do %>
+            <i class="fa fa-edit" aria-hidden="true"></i> edit
+          <% end %>
 
-    <h5><%= number_to_currency @piece.price %></h5>
-    <%= link_to add_to_cart_path(piece_id: @piece.id), method: :post do %>
-      <button type="button" name="button">Add to Cart</button>
-    <% end %>
+          |
+          <%= link_to piece_path(id: @piece.id), method: :delete, data: {confirm: "Are you sure you want to delete?"} do %>
+            <i class="fa fa-trash" aria-hidden="true"></i> delete
+          <% end %>
+        </h4>
+      <% end %>
+      <p>
+        <%= simple_format @piece.description %>
+      </p>
+      <h5><%= number_to_currency @piece.price %></h5>
+      <%= link_to add_to_cart_path(piece_id: @piece.id), method: :post do %>
+        <button type="button" name="button">Add to Cart</button>
+      <% end %>
+      <br><br>
+      <% if @piece.artist.pieces.count > 1 %>
+        <h5>Other work by this artist: </h5>
+        <div class="art" style="max-width: 100%;">
+          <%= react_component('PiecesListByArtist', { data: @piece.artist.id, max_entries: 4 }) %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
 </div>

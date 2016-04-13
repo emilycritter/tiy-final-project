@@ -1,16 +1,18 @@
-<div class="container">
-  <h1>Artist: <%= @artist.shop_name %></h1>
-  <div id="mapid"></div>
+<div class="art">
+  <h1>Artist: <%= @artist.shop_name %> <small><%= @artist.location %></small></h1>
+  <% if @artist == @current_user.artist %>
+    <h1><%= link_to "Add Art", new_piece_path %></h1>
+  <% end %>
 
-    <ul>
-      <% @artist.pieces.each do |piece| %>
-        <li>
-          <%= link_to piece.title, piece_path(id: piece.id) %>
-          <%= image_tag attachment_url(piece, :photo, :fill, 400, 400, format: "jpg"), class: "img-responsive" %>
-        </li>
-      <% end %>
-    </ul>
+  <div class="container">
+    <div id="mapid"></div>
+    <blockquote>
+      <%= @artist.bio %>
+    </blockquote>
+  </div>
+  <%= react_component('PiecesListByArtist', { data: @artist.id, max_entries: @artist.pieces.count  }) %>
 </div>
+
 <script type="text/javascript">
   $(window).ready(function(){
     var mymap = L.map('mapid').setView([29.73, -95.39], 10);
