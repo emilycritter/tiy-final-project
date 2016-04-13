@@ -5,7 +5,7 @@
       <%= text_field_tag :search, params[:search] %>
       <%= submit_tag "Search" %>
     <% end %>
-    <%= react_component('MapDisplay', { artists: @artists }) %>
+    <%= react_component('MapDisplay', { artists: @artists, current_user: @current_user }) %>
     <br>
   </div>
   <% @artists.each do |artist| %>

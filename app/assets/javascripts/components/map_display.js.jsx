@@ -3,11 +3,17 @@ var MapDisplay = React.createClass({
   getInitialState(){
     return {
       artists: this.props.artists,
+      currentUser: this.props.current_user,
+      latitude: '',
+      longitude: '',
+      errors: {}
     }
   },
 
   componentDidMount(){
-    var mymap = L.map('mapid').setView([29.73, -95.39], 10);
+    var component = this;
+    var mymap = L.map('mapid').setView([29.73, -95.39], 13);
+
     L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
       attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
       maxZoom: 18,
@@ -21,14 +27,19 @@ var MapDisplay = React.createClass({
         .bindPopup('<b>' + artist.shop_name+ '</b>' + artist.location);
     });
 
-    mymap.locate({setView: true, maxZoom: 16});
+    mymap.locate({setView: true, maxZoom: 13});
     function onLocationFound(e) {
       var radius = e.accuracy / 2;
-      var latitude = e.latlng.lat.toFixed(5);
-      var longitude = e.latlng.lng.toFixed(5);
+      component.setState({
+        latitude: e.latlng.lat.toFixed(5),
+        longitude: e.latlng.lng.toFixed(5)
+      });
+
       L.marker(e.latlng).addTo(mymap)
-          .bindPopup("<b>Current Location</b>(" + latitude + ", " + longitude + ")").openPopup();
+          .bindPopup("<b>Current Location</b>(" + component.state.latitude + ", " + component.state.longitude + ")").openPopup();
       L.circle(e.latlng, radius).addTo(mymap);
+
+      component.updateUserLocation(component.state.latitude, component.state.longitude);
     }
 
     mymap.on('locationfound', onLocationFound);
@@ -37,6 +48,49 @@ var MapDisplay = React.createClass({
     }
 
     mymap.on('locationerror', onLocationError);
+
+
+  },
+
+  updateUserLocation(newLat, newLon){
+    var component = this;
+    if (this.state.currentUser.id) {
+
+      var path = window.location.pathname;
+      var url = "/api/users/location/" + this.state.currentUser.id;
+
+      var params = {
+        user: {
+          latitude: newLat,
+          longitude: newLon
+        }
+      };
+      console.log("params " + JSON.stringify(params));
+
+      fetch(url, {
+        method: 'put',
+        headers: {
+         "Content-type": "application/json"
+        },
+        credentials: 'include',
+        body: JSON.stringify(params)
+      })
+      .then(function(response){
+        console.log(response)
+        return response.json();
+      })
+      .then(function(data){
+        console.log(data)
+        if (data.errors){
+          component.setState({
+            errors: data.errors
+          })
+          console.log(component.errors);
+        } else {
+          window.location = path
+        }
+      })
+    }
   },
 
   render: function() {
