@@ -22,7 +22,9 @@ var PiecesList = React.createClass({
 
   fetchPieces(){
     var component = this;
-    fetch("/api/pieces.json")
+    var searchParams = window.location.search;
+    var url = "/api/pieces.json/" + searchParams;
+    fetch(url)
     .then(function(r){
       return r.json();
     })
