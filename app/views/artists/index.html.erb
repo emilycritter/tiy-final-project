@@ -27,9 +27,26 @@
       id: 'emilycritter.pia1bd72',
       accessToken: 'pk.eyJ1IjoiZW1pbHljcml0dGVyIiwiYSI6ImNpbWdmZXhmYzAyMDV1NGx2bHM0MTNzNGYifQ.7KYzLItfXBfg5Zs-757BGw'
   }).addTo(mymap);
+
   <% @artists.each do |artist| %>
     L.marker([<%= artist.latitude %>, <%= artist.longitude %>]).addTo(mymap)
       .bindPopup('<b><%= artist.shop_name %></b><%= artist.location %><br/> <%= image_tag attachment_url(artist, :photo, :fill, 160, 160), class: "img-responsive" %>');
   <% end %>
-  })
+
+  mymap.locate({setView: true, maxZoom: 16});
+  function onLocationFound(e) {
+    var radius = e.accuracy / 2;
+    L.marker(e.latlng).addTo(mymap)
+        .bindPopup("<b>Current Location</b><br/>You are within " + radius + " meters from this point</br>" + e.latlng).openPopup();
+    L.circle(e.latlng, radius).addTo(mymap);
+  }
+
+  mymap.on('locationfound', onLocationFound);
+  function onLocationError(e) {
+      alert(e.message);
+  }
+
+  mymap.on('locationerror', onLocationError);
+    });
+
 </script>
