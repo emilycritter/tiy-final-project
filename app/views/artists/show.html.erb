@@ -10,7 +10,7 @@
       <%= @artist.bio %>
     </blockquote>
   </div>
-  <%= react_component('PiecesListByArtist', { data: @artist.id }) %>
+  <%= react_component('PiecesListByArtist', { data: @artist.id, max_entries: @artist.pieces.count  }) %>
 </div>
 
 <script type="text/javascript">

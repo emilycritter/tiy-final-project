@@ -29,8 +29,15 @@ body:before {
 }
 .content-wrapper {
   min-height: 100%;
-  padding-bottom: 150px;
+  padding-bottom: 70px;
   margin-bottom: 20px;
+}
+footer {
+  background-color: lighten($grey, 60%);
+  position: relative;
+	margin-top: -70px;
+	height: 70px;
+	clear:both;
 }
 
 .art {
@@ -43,7 +50,7 @@ body:before {
     margin: 20px auto 0;
     padding: 0;
     position: relative;
-    // border: 1px solid #333;
+    max-width: 100%;
     .flip-container {
       width: 25%;
       position: relative;
@@ -94,14 +101,6 @@ body:before {
       }
     }
   }
-}
-
-footer {
-  background-color: lighten($grey, 60%);
-  position: relative;
-	margin-top: -150px;
-	height: 150px;
-	clear:both;
 }
 
 @media screen and (max-width: 1024px) {

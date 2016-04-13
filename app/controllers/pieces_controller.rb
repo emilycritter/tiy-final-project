@@ -27,12 +27,25 @@ class PiecesController < ApplicationController
   end
 
   def edit
+    @piece = Piece.find_by id: params[:id]
+    if @piece.artist.user != @current_user
+      redirect_to piece_path(id: @piece.id)
+    end
   end
 
   def update
+    @piece = Piece.find_by id: params[:id]
+    if @piece.update piece_params
+      redirect_to piece_path(id: @piece.id)
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @piece = Piece.find_by id: params[:id]
+    @piece.destroy
+    redirect_to artist_path(name_parameterize: @piece.artist.name_parameterize)
   end
 
   def piece_params

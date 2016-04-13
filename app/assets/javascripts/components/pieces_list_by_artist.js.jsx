@@ -5,8 +5,9 @@ var PiecesListByArtist = React.createClass({
   getInitialState(){
     return {
       artist: '',
-      artist_id: this.props.data,
-      pieces: []
+      pieces: [],
+      artistId: this.props.data,
+      maxEntries: this.props.max_entries
     }
   },
 
@@ -24,7 +25,7 @@ var PiecesListByArtist = React.createClass({
 
   fetchPieces(){
     var component = this;
-    var lastParameter = this.state.artist_id;
+    var lastParameter = this.state.artistId;
     var url = "/api/artists/"+lastParameter+".json";
     fetch(url)
     .then(function(r){
@@ -46,7 +47,7 @@ var PiecesListByArtist = React.createClass({
     };
     return <div className="container">
 
-      {this.state.pieces.map(function(thePiece){
+      {this.state.pieces.slice(0, this.state.maxEntries).map(function(thePiece){
         return <PieceTile key={thePiece.id} piece={thePiece} />
       })}
     </div>
