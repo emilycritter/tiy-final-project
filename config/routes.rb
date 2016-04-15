@@ -3,10 +3,7 @@ Rails.application.routes.draw do
 
   resources :pieces
   resources :users
-
-  get 'artists' => 'artists#index', as: :artists
-  get 'artists/:name_parameterize' => 'artists#show', as: :artist
-  get 'artists/:name_parameterize/edit' => 'artists#edit', as: :edit_artist
+  resources :artists
 
   get 'sign_in' => 'sessions#new', as: :sign_in
   post 'sign_in' => 'sessions#create'

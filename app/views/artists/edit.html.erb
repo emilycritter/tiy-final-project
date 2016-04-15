@@ -1,2 +1,7 @@
-<h1>Artists#edit</h1>
-<p>Find me in app/views/artists/edit.html.erb</p>
+<div class="container">
+  <h1>Edit Profile:</h1>
+  <h2><%= @artist.shop_name %></h2>
+  <%= render 'form' %>
+  <br>
+  <%= link_to "Delete Artist Profile", artist_path(id: @artist.id), method: :delete, data: {confirm: "Are you sure you want to delete?"}, class: "btn btn-lg btn-primary" %>
+</div>
