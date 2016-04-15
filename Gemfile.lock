@@ -130,6 +130,7 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     rack (1.6.4)
+    rack-cors (0.4.0)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -256,6 +257,7 @@ DEPENDENCIES
   pg (~> 0.15)
   pg_search
   pry
+  rack-cors
   rails (= 4.2.5.2)
   rails-erd
   rails_12factor
