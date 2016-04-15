@@ -56,9 +56,9 @@ end
 
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
-gem 'refile', require: 'refile/rails'
+gem 'refile', '0.6.2', require: 'refile/rails'
 gem 'refile-mini_magick'
-gem 'refile-postgres'
+gem 'refile-postgres', '1.2'
 gem 'rails-erd'
 gem 'local_time'
 gem 'simple_form'
