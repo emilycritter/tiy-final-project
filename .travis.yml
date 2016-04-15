@@ -13,3 +13,5 @@ deploy:
   app: buy-local-art
   on:
     repo: emilycritter/tiy-final-project
+  run:
+    - "rake db:migrate"
