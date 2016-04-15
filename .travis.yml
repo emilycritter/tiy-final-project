@@ -13,6 +13,6 @@ deploy:
   app: buy-local-art
   on:
     repo: emilycritter/tiy-final-project
-    branch: travis-issues
+    branch: master
   run:
     - "rake db:migrate"
