@@ -22,6 +22,6 @@ class Artist < ActiveRecord::Base
   end
 
   def artist_url
-    Rails.application.routes.url_helpers.artist_path(name_parameterize: name_parameterize)
+    Rails.application.routes.url_helpers.artist_path(id: id)
   end
 end
