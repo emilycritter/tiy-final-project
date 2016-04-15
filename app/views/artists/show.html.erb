@@ -3,8 +3,8 @@
     <h1>Artist: <%= @artist.shop_name %> <small><%= @artist.location %></small></h1>
     <div class="container">
       <div id="mapid"></div>
-      <br>
-      <blockquote>
+      <blockquote style="width: 100%; text-align: center;">
+        <br>
         <%= @artist.bio %>
         <% if @current_user && @artist == @current_user.artist %>
           &nbsp;&nbsp;&nbsp;
