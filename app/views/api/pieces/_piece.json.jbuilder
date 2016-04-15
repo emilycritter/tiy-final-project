@@ -10,5 +10,5 @@ json.artist do
   json.user_id piece.artist.user_id
 end
 json.photo piece.photo
-json.photo_url attachment_url(piece, :photo, :fill, 400, 400, format: "jpg")
+json.photo_url piece.photo_url
 json.piece_url piece_path(id: piece.id)

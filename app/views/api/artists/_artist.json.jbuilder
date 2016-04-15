@@ -20,7 +20,7 @@ json.pieces artist.pieces do |piece|
   json.price_in_cents piece.price_in_cents
   json.inventory piece.inventory
   json.photo piece.photo
-  json.photo_url attachment_url(piece, :photo, :fill, 400, 400, format: "jpg")
+  json.photo_url piece.photo_url
   json.piece_url piece_path(id: piece.id)
   json.artist do
     json.shop_name piece.artist.shop_name

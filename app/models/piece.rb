@@ -20,4 +20,8 @@ class Piece < ActiveRecord::Base
     "$#{a}.#{b}"
   end
 
+  def photo_url
+    Refile.attachment_url(self, :photo, :fill, 300, 300, format: "jpg")
+  end
+
 end
