@@ -14,6 +14,7 @@ class Artist < ActiveRecord::Base
   geocoded_by :location
   after_validation :geocode
 
+
   include PgSearch
   pg_search_scope :search_all, :against => [:shop_name, :bio, :location]
 

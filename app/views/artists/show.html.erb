@@ -3,6 +3,7 @@
     <h1>Artist: <%= @artist.shop_name %> <small><%= @artist.location %></small></h1>
     <div class="container">
       <div id="mapid"></div>
+      <br>
       <blockquote>
         <%= @artist.bio %>
         <% if @current_user && @artist == @current_user.artist %>
