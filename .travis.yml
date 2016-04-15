@@ -6,13 +6,3 @@ addons:
 before_script:
 - psql -c 'create database travis_ci_test;' -U postgres
 - cp config/database.yml.travis config/database.yml
-deploy:
-  provider: heroku
-  api_key:
-    secure: XS86Hb9H2lWtp9Ii4MNrcy0QNc7KxYxWxjIyi20hURwAknd+cc5RfO4MeoSKqCWj9ZR0sCEweCPKx+ph91URqoMp+blQWY4KgtXqaut6bmWIPtM7vG3oQ3pCZR0HJPEMMFNUWGv3XSPn6Fb1bE3fv/Cf0y+tyek3MgAY9sv4pzCvPn+U9I/Nn5KmUINZIpOm2RqFioZIfhkbMpdVbl7vHkPDm9RHiCA+khaugJt9CAKt+AgYsZExW36kt/1yUapGLQt/lprtP/3hH3zWycC0QhESledtD8xnYR0pXAyk8JrKsLguFuHicRVJ0aSSC7eg/NYEBQMKa+LCFcc88+kWnoFVZvehEMovU2L3wVyjWzAhrpsjeccc++jacT1b/JbFzChKLkuaZH61wOGNZBakg6AdC0EDRXt9ijJg497+oYrSGmXqQc6wXtWO+1XJeeL+4cN2cFiHWcsDh2WgzfcmCFoU7waEG8+CX/nZ91KRCXt9UaG9k3zshzNph4ZzDb8b/8Wgh24t2L/xIa+1OcVEnG2c23dqFvOhK7XNwjwECY0VpdC/LiMSisgP8HJ1eB6EvTfndUssJJCPNN4rNpl3Qk+RmXnJHjXI1+RtH6MKDO+bUmCOLUL+7RV9M+1sjiuQPgCNBS6BbUP5VsSscFwNwHGXzgmh+2YOf8Lzz1uY368=
-  app: buy-local-art
-  on:
-    repo: emilycritter/tiy-final-project
-    branch: master
-  run:
-    - "rake db:migrate"
