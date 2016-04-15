@@ -29,7 +29,7 @@ class PiecesController < ApplicationController
     @artist = @current_user.artist
     @piece.artist = @artist
     if @piece.save
-      redirect_to artist_path(name_parameterize: @artist.name_parameterize)
+      redirect_to artist_path(id: @artist.id)
     else
       render :new
     end
@@ -54,7 +54,7 @@ class PiecesController < ApplicationController
   def destroy
     @piece = Piece.find_by id: params[:id]
     @piece.destroy
-    redirect_to artist_path(name_parameterize: @piece.artist.name_parameterize)
+    redirect_to artist_path(id: @piece.artist.id)
   end
 
   def piece_params

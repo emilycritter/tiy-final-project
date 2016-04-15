@@ -8,7 +8,7 @@ class ArtistsController < ApplicationController
   end
 
   def show
-    @artist = Artist.find_by name_parameterize: params[:name_parameterize]
+    @artist = Artist.find_by id: params[:id]
     @pieces = Piece.where('inventory > ? AND artist_id = ?', 0, @artist.id).order("title asc")
   end
 
@@ -21,29 +21,29 @@ class ArtistsController < ApplicationController
     @artist.user_id = @current_user.id
 
     if @artist.save
-      redirect_to artist_path(name_parameterize: @artist.name_parameterize)
+      redirect_to artist_path(id: @artist.id)
     else
       render :new
     end
   end
 
   def edit
-    @artist = Artist.find_by name_parameterize: params[:name_parameterize]
+    @artist = Artist.find_by id: params[:id]
     redirect_to root_path if @artist.user != @current_user
   end
 
   def update
-    @artist = Artist.find_by name_parameterize: @artist.name_parameterize
+    @artist = Artist.find_by id: params[:id]
 
     if @artist.update artist_params
-      redirect_to artist_path(name_parameterize: @artist.name_parameterize)
+      redirect_to artist_path(id: @artist.id)
     else
       render :edit
     end
   end
 
   def destroy
-    @artist = Artist.find_by name_parameterize: @artist.name_parameterize
+    @artist = Artist.find_by id: params[:id]
     if @artist.user == @current_user
       @artist.destroy
       redirect_to root_path

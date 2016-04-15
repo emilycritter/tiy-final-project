@@ -9,7 +9,7 @@
     <br>
   </div>
   <% @artists.each do |artist| %>
-    <%= link_to artist.shop_name, artist_path(name_parameterize: artist.name_parameterize) %>
+    <%= link_to artist.shop_name, artist_path(id: artist.id) %>
     <ul>
       <% artist.pieces.each do |piece| %>
         <li><%= link_to piece.title, piece_path(id: piece.id) %></li>
