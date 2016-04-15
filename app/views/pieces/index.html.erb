@@ -2,6 +2,13 @@
   <div class="row">
 
     <div class="col-md-2">
+
+      <% if @current_user && @current_user.favorites %>
+        <br>
+        <h5><%= link_to "View Favorites", user_path(id: @current_user.id) %></h5>
+        <hr>
+      <% end %>
+      
       <br>
       <h5>Shop by Category</h5>
       <hr>
@@ -37,6 +44,7 @@
           <% end %>
         </li>
       </ul>
+
     </div>
 
     <div class="col-md-9">

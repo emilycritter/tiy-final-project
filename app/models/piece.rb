@@ -1,6 +1,7 @@
 class Piece < ActiveRecord::Base
   belongs_to :artist
   has_many :order_items
+  has_many :favorites, dependent: :destroy
 
   validates :title, presence: true
 

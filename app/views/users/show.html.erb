@@ -1,3 +1,36 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-<%= link_to "Edit Profile", edit_user_path(id: @user.id) %>
+<div class="art">
+  <div class="row">
+    <div class="col-md-2">
+      <h3><%= @user.full_name %></h3>
+      <% if @user.latitude && @user.longitude %>
+        <h4><%= @user.location.upcase %></h4>
+      <% end %>
+      <br>
+      <h5><%= link_to "Edit Profile", edit_user_path(id: @user.id) %></h5>
+      <hr>
+    </div>
+    <div class="col-md-9">
+      <% if @user.favorites && @user.favorites.count > 0 %>
+        <h3 style="text-align: center;">your favorites</h3>
+        <hr>
+        <div class="container">
+          <% @favorites.each do |favorite| %>
+            <%= link_to piece_path(id: favorite.piece.id) do %>
+              <div class="image-tile">
+                <%= image_tag attachment_url(favorite.piece, :photo, :fill, 300, 300, format: "jpg") %>
+                <div class="favorite">
+                    <%= link_to unfavorite_piece_path(piece_id: favorite.piece.id, user_id: @user.id), method: :delete do %>
+                    <i class="fa fa-heart" aria-hidden="true"></i>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      <% else %>
+        <h3 style="text-align: center;"><%= link_to "return to artwork and select your favorites!", root_path %></h3>
+        <hr>
+      <% end %>
+    </div>
+  <div>
+</div>
