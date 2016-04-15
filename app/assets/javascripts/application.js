@@ -13,9 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require es5-shim
-//= require promise
-//= require fetch
 //= require bootstrap-sprockets
 //= require react
 //= require react_ujs
