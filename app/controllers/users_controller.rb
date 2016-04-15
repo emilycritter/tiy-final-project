@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by id: params[:id]
-    @pieces = @user.favorites.map{|favorite| favorite.piece}
+    @favorites = @user.favorites.order('created_at desc') if @user.favorites
   end
 
   def edit

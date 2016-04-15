@@ -10,9 +10,11 @@
       <hr>
     </div>
     <div class="col-md-9">
-      <% if @user.favorites %>
+      <% if @user.favorites && @user.favorites.count > 0 %>
+        <h3 style="text-align: center;">your favorites</h3>
+        <hr>
         <div class="container">
-          <% @user.favorites.each do |favorite| %>
+          <% @favorites.each do |favorite| %>
             <%= link_to piece_path(id: favorite.piece.id) do %>
               <div class="image-tile">
                 <%= image_tag attachment_url(favorite.piece, :photo, :fill, 300, 300, format: "jpg") %>
@@ -25,6 +27,9 @@
             <% end %>
           <% end %>
         </div>
+      <% else %>
+        <h3 style="text-align: center;"><%= link_to "return to artwork and select your favorites!", root_path %></h3>
+        <hr>
       <% end %>
     </div>
   <div>
