@@ -1,5 +1,7 @@
 class Artist < ActiveRecord::Base
-  before_create { define_parameterize(:name_parameterize) }
+  before_validation(on: :create) do
+    self.name_parameterize = self.shop_name.parameterize if attribute_present?("shop_name")
+  end
 
   has_many :pieces, dependent: :destroy
   belongs_to :user
@@ -14,10 +16,6 @@ class Artist < ActiveRecord::Base
 
   include PgSearch
   pg_search_scope :search_all, :against => [:shop_name, :bio, :location]
-
-  def define_parameterize(column)
-    self[column] = self.shop_name.parameterize
-  end
 
   def photo_url
     Refile.attachment_url(self, :photo, :fill, 300, 300, format: "jpg")

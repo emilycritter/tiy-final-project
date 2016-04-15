@@ -23,10 +23,12 @@ var MapDisplay = React.createClass({
 
     function onLocationFound(e) {
       var radius = e.accuracy / 2;
-      component.setState({
-        latitude: e.latlng.lat.toFixed(5),
-        longitude: e.latlng.lng.toFixed(5)
-      });
+      if (component.isMounted()) {
+        component.setState({
+          latitude: e.latlng.lat.toFixed(5),
+          longitude: e.latlng.lng.toFixed(5)
+        });
+      };
 
       L.marker(e.latlng).addTo(mymap)
           .bindPopup("<b>Current Location</b>(" + component.state.latitude + ", " + component.state.longitude + ")").openPopup();

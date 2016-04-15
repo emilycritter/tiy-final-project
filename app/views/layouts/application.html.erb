@@ -50,7 +50,13 @@
   </div>
 
   <footer>
-      <%= link_to "Create Artist Profile", root_path %>
+      <% if @current_user && @current_user.artist.nil? %>
+        <%= link_to "Create Artist Profile", new_artist_path %>
+      <% elsif @current_user && @current_user.artist %>
+        <%= link_to "Edit Artist Profile", edit_artist_path(name_parameterize: @current_user.artist.name_parameterize) %>
+      <% else %>
+        <%= link_to "Sign Up", new_user_path %>
+      <% end %>
   </footer>
 </body>
 </html>
