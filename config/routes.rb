@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     put 'users/location/:id' => 'users#update_location'
   end
 
+  post 'favorite/:user_id/:piece_id' => 'users#favorite_piece', as: :favorite_piece
+  delete 'favorite/:user_id/:piece_id' => 'users#unfavorite_piece', as: :unfavorite_piece
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

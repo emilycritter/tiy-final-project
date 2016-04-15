@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new user_params
+    @user.location = request.location.city if params[:location].nil?
     if @user.save
       session[:user_id] = @user.id
       redirect_to root_path
@@ -15,6 +16,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by id: params[:id]
+    @pieces = @user.favorites.map{|favorite| favorite.piece}
   end
 
   def edit
@@ -24,6 +26,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find_by id: params[:id]
+    @user.location = request.location.city if params[:location].nil?
     if @user.update user_params
       redirect_to user_path(id: @user.id)
     else
@@ -37,9 +40,27 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def favorite_piece
+    @user = User.find_by id: params[:user_id]
+    @piece = Piece.find_by id: params[:piece_id]
+
+    @favorite = Favorite.new
+    @favorite.user = @user
+    @favorite.piece = @piece
+    @favorite.save
+    redirect_to root_path
+  end
+
+  def unfavorite_piece
+    @user = User.find_by id: params[:user_id]
+    @favorite = Favorite.find_by user_id: params[:user_id], piece_id: params[:piece_id]
+    @favorite.destroy
+    redirect_to root_path
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :phone_number, :password, :password_confirmation, :latitude, :longitude)
+    params.require(:user).permit(:first_name, :last_name, :email, :phone_number, :password, :password_confirmation, :latitude, :longitude, :location)
   end
 end

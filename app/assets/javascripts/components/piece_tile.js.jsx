@@ -21,7 +21,7 @@ var PieceTile = React.createClass({
           </div>
           <div className="back">
               <h4>{pieceTitleTruncate(piece.title)}</h4>
-              <h5>By: {piece.artist.shop_name}</h5>
+              <h5>{piece.artist.shop_name}</h5>
               <h5>{piece.price_formatted}</h5>
           </div>
         </div>
