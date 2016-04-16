@@ -121,7 +121,8 @@ footer {
 }
 
 .image-tile {
-    position: relative;
+  position: relative;
+  a {
     i {
       position: absolute;
       left: 5px;
@@ -135,6 +136,7 @@ footer {
         font-weight: bold;
       }
     }
+  }
 }
 
 @media screen and (max-width: 1024px) {
