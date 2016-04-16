@@ -1,9 +1,19 @@
 class PiecesController < ApplicationController
   def index
-    @pieces = Piece.where('inventory > 0').order("title asc")
     search_text = params[:search]
     search_min = params[:search_min].to_i
     search_max = params[:search_max].to_i
+
+    @pieces = Piece.where('inventory > 0').order("view_count desc")
+
+    case params[:sort]
+      when "lowhigh" then @pieces = @pieces.order("price asc")
+      when "highlow" then @pieces = @pieces.order("price asc")
+      when "newestfirst" then @pieces = @pieces.order("created_at desc")
+      when "popular" then @pieces = @pieces.order("view_count desc")
+      when "nameasc" then @pieces = @pieces.order("title asc")
+      when "namedesc" then @pieces = @pieces.order("title desc")
+    end
 
     @pieces = @pieces.search_all(search_text) if search_text.present?
     if search_min.present? && search_max.present?
@@ -14,10 +24,13 @@ class PiecesController < ApplicationController
       @pieces = @pieces.where('price <= ?', search_max)
     end
     @pieces_count = @pieces.count
+    @pieces = @pieces.page(params[:page]).per(48)
   end
 
   def show
     @piece = Piece.find_by id: params[:id]
+    @piece.view_count += 1
+    @piece.save
   end
 
   def new
