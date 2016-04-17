@@ -1,3 +1,17 @@
-// Place all the styles related to the carts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+table {
+  .cart-price {
+    text-align: right;
+  }
+}
+.order-total {
+  text-align: right;
+}
+.checkout {
+  width: 100%;
+  text-align: right;
+}
+.no-items {
+  h4 {
+    text-align: center;
+  }
+}
