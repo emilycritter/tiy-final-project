@@ -3,6 +3,9 @@
   <div class="row">
     <div class="col-md-6">
       <h2><%= @piece.title %></h2>
+      <% if @piece.inventory == 0 %>
+        <h3>We're sorry, this piece is no longer available.</h3>
+      <% end %>
       <div class="image-tile">
         <%= image_tag attachment_url(@piece, :photo, :fill, 400, 400, format: "jpg"), class: "img-responsive" %>
         <% if @current_user %>
@@ -37,7 +40,11 @@
       <p>
         <%= simple_format @piece.description %>
       </p>
-      <h5><%= number_to_currency @piece.price %></h5>
+      <% if @piece.inventory != 0 %>
+        <h5><%= number_to_currency @piece.price %></h5>
+      <% else %>
+        <h5><span style="text-decoration: line-through;"><%= number_to_currency @piece.price %></span> <small> sold out </small></h5>
+      <% end %>
       <%= link_to add_to_cart_path(piece_id: @piece.id), method: :post do %>
         <button type="button" name="button">Add to Cart</button>
       <% end %>

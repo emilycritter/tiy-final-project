@@ -12,7 +12,7 @@ class Artist < ActiveRecord::Base
   attachment :photo
 
   geocoded_by :location
-  after_validation :geocode
+  after_validation :geocode if :location
 
 
   include PgSearch
