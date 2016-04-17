@@ -3,30 +3,7 @@
     <h3><%= @current_user.full_name %>'s cart</h3>
     <br>
     <% if @order && @order.order_items.present? %>
-      <table class= "table table-hover" style="width:100%">
-          <th>Piece</th>
-          <th>&nbsp;</th>
-          <th>Quantity</th>
-          <th class="cart-price">Price</th>
-          <% @order.order_items.each do |order_item| %>
-            <tr>
-              <td>
-                <div class="img img-responsive"><%= image_tag attachment_url(order_item.piece, :photo, :fill, 150, 150, format: "jpg") %></div>
-              </td>
-              <td>
-                <%= order_item.piece.title %>
-              </td>
-              <td>
-                <strong><%= order_item.quantity %></strong>
-                &nbsp;
-                <%= link_to 'Remove from Cart', remove_from_cart_path(piece_id: order_item.piece_id), class: '', method: :delete %>
-              </td>
-              <td class="cart-price">
-                <%= number_to_currency order_item.total_price %>
-              </td>
-            </tr>
-          <% end %>
-      </table>
+      <%= render 'table' %>
       <hr>
       <h5 class="order-total">Order Total: <strong><%= number_to_currency @order.total_price %></strong></h5>
       <div class="checkout">
