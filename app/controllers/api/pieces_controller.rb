@@ -4,10 +4,19 @@ class Api::PiecesController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
   def index
-    @pieces = Piece.where('inventory > 0').order("title asc")
     search_text = params[:search]
     search_min = params[:search_min]
     search_max = params[:search_max]
+
+    case params[:sort]
+      when "lowhigh" then @pieces = Piece.where('inventory > 0').order("price asc")
+      when "highlow" then @pieces = Piece.where('inventory > 0').order("price asc")
+      when "newestfirst" then @pieces = Piece.where('inventory > 0').order("created_at desc")
+      when "popular" then @pieces = Piece.where('inventory > 0').order("view_count desc")
+      when "nameasc" then @pieces = Piece.where('inventory > 0').order("title asc")
+      when "namedesc" then @pieces = Piece.where('inventory > 0').order("title desc")
+      else @pieces = Piece.where('inventory > 0').order("view_count desc")
+    end
 
     @pieces = @pieces.search_all(search_text) if search_text.present?
     if search_min.present? && search_max.present?
@@ -17,6 +26,7 @@ class Api::PiecesController < ApplicationController
     elsif search_max.present?
       @pieces = @pieces.where('price <= ?', search_max)
     end
+    @pieces = @pieces.page(params[:page]).per(48)
     @pieces_count = @pieces.count
   end
 
