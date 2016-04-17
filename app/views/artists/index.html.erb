@@ -1,21 +1,29 @@
 <div class="container">
   <div class="wrapper">
     <h1>Artists</h1>
-    <%= form_tag artists_path, method: :get do %>
-      <%= text_field_tag :search, params[:search] %>
-      <%= submit_tag "Search" %>
-    <% end %>
-    <%= react_component('MapDisplay', { artists: @artists }) %>
-    <br>
+    <div class="row">
+      <div class="col-md-6">
+        <%= react_component('MapDisplay', { artists: @artists }) %>
+      </div>
+      <div class="col-md-6">
+        <div class="input-group">
+        <%= form_tag artists_path, method: :get do %>
+          <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search Artists" %>
+          <%= submit_tag "Search", class:"btn btn-default", style:"display: none;" %>
+        <% end %>
+        </div>
+        <br>
+        <% @artists.each do |artist| %>
+          <h4><%= link_to artist.shop_name, artist_path(id: artist.id) %></h4>
+          <hr>
+          <div class="art" style="max-width: 100%;">
+            <%= react_component('PiecesListByArtist', { data: artist.id, max_entries: 4 }) %>
+          </div>
+          <br>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <% @artists.each do |artist| %>
-    <%= link_to artist.shop_name, artist_path(id: artist.id) %>
-    <ul>
-      <% artist.pieces.each do |piece| %>
-        <li><%= link_to piece.title, piece_path(id: piece.id) %></li>
-      <% end %>
-    </ul>
-  <% end %>
 </div>
 
 <!-- <script type="text/javascript">
