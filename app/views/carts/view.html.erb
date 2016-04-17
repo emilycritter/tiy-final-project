@@ -1,45 +1,56 @@
 <div class="container">
   <div class="cart">
     <h3><%= @current_user.full_name %>'s cart</h3>
-    <% if @order %>
-      <% @order.order_items.each do |order_item| %>
-        <hr>
-        <div class="order-item">
-          <div><%= image_tag attachment_url(order_item.piece, :photo, :fill, 150, 150, format: "jpg") %></div>
-          <ul>
-            <li>Title: <%= order_item.piece.title %></li>
-            <li>Quantity: <%= order_item.quantity %></li>
-            <li>Total Price: <%= number_to_currency order_item.total_price %></li>
-          </ul>
-          <div class="order-img-btn">
-            <%= link_to 'Remove from Cart', remove_from_cart_path(piece_id: order_item.piece_id), class: '', method: :delete %>
-          </div>
-        </div>
-      <% end %>
-      <hr>
-      <h5 style="text-align: right;">Order Total: <%= number_to_currency @order.total_price %></h5>
-      <div class="checkout">
-        <% if @order.order_items.present? %>
-          <%= form_tag process_payment_path, method: :post, id: "payment-form" do %>
-
-            <script
-              src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-              data-key="pk_test_5JVSPhieKsIPIFTadSnKl3vs"
-              data-name="buy.local.art"
-              data-description="<%= @order.description %>"
-              data-amount="<%= @order.total_price_in_cents %>"
-              data-email="<%= @current_user.email %>"
-              data-shipping-address="true"
-              data-locale="auto">
-            </script>
-
+    <br>
+    <% if @order && @order.order_items.present? %>
+      <table class= "table table-hover" style="width:100%">
+          <th>Piece</th>
+          <th>&nbsp;</th>
+          <th>Quantity</th>
+          <th class="cart-price">Price</th>
+          <% @order.order_items.each do |order_item| %>
+            <tr>
+              <td>
+                <div class="img img-responsive"><%= image_tag attachment_url(order_item.piece, :photo, :fill, 150, 150, format: "jpg") %></div>
+              </td>
+              <td>
+                <%= order_item.piece.title %>
+              </td>
+              <td>
+                <strong><%= order_item.quantity %></strong>
+                &nbsp;
+                <%= link_to 'Remove from Cart', remove_from_cart_path(piece_id: order_item.piece_id), class: '', method: :delete %>
+              </td>
+              <td class="cart-price">
+                <%= number_to_currency order_item.total_price %>
+              </td>
+            </tr>
           <% end %>
-        <% else %>
-          <%= link_to 'Keep Shopping', root_path, class: '' %>
+      </table>
+      <hr>
+      <h5 class="order-total">Order Total: <strong><%= number_to_currency @order.total_price %></strong></h5>
+      <div class="checkout">
+        <%= form_tag process_payment_path, method: :post, id: "payment-form" do %>
+
+          <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="pk_test_5JVSPhieKsIPIFTadSnKl3vs"
+            data-name="buy.local.art"
+            data-description="<%= @order.description %>"
+            data-amount="<%= @order.total_price_in_cents %>"
+            data-email="<%= @current_user.email %>"
+            data-shipping-address="true"
+            data-locale="auto">
+          </script>
+
         <% end %>
       </div>
-      <% else %>
-      <%= link_to 'Keep Shopping', root_path, class: '' %>
+    <% else %>
+      <div class="no-items">
+        <h4><i class="fa fa-paint-brush" aria-hidden="true"></i></h4>
+        <h4><small>no items</small></h4>
+        <h4><%= link_to 'keep shopping', root_path %></h4>
+      </div>
     <% end %>
   </div>
 </div>
