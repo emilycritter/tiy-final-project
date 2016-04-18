@@ -4,7 +4,8 @@ var PiecesList = React.createClass({
 
   getInitialState(){
     return {
-      pieces: []
+      pieces: [],
+      isLoaded: false
     }
   },
 
@@ -30,15 +31,17 @@ var PiecesList = React.createClass({
     })
     .then(function(json){
       component.setState({
-        pieces: json.pieces
+        pieces: json.pieces,
+        isLoaded: true
       })
     })
   },
 
   render: function() {
+    var component = this;
     return <div className="container">
       {this.state.pieces.map(function(thePiece){
-        return <PieceTile key={thePiece.id} piece={thePiece} />
+        return <PieceTile key={thePiece.id} piece={thePiece} isLoaded={component.state.isLoaded}/>
       })}
     </div>
 

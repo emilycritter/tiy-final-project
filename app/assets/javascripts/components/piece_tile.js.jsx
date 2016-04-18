@@ -2,13 +2,17 @@ var PieceTile = React.createClass({
   componentWillMount(){
     $('.price').css('display', 'none');
   },
-  componentDidMount(){
-    $('.price').css('display', 'block');
-  },
 
   render(){
 
     var piece = this.props.piece;
+    var isLoaded = this.props.piece;
+
+    if (isLoaded) {
+      $('.price').css('display', 'block');
+    } else {
+      $('.price').css('display', 'none');
+    }
 
     var pieceTitleTruncate = function(title){
       if (title.length > 60) {

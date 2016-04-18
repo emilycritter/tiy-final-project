@@ -7,7 +7,8 @@ var PiecesListByArtist = React.createClass({
       artist: '',
       pieces: [],
       artistId: this.props.data,
-      maxEntries: this.props.max_entries
+      maxEntries: this.props.max_entries,
+      isLoaded: false
     }
   },
 
@@ -34,21 +35,24 @@ var PiecesListByArtist = React.createClass({
     .then(function(json){
       component.setState({
         artist: json.artist,
-        pieces: json.artist.pieces
+        pieces: json.artist.pieces,
+        isLoaded: true
       })
     })
   },
 
   render: function() {
+    var component = this;
     var addArtworkStyle = {
       display: 'flex',
       justifyContent: 'center',
       alignContent: 'center'
     };
+
     return <div className="container">
 
       {this.state.pieces.slice(0, this.state.maxEntries).map(function(thePiece){
-        return <PieceTile key={thePiece.id} piece={thePiece} />
+        return <PieceTile key={thePiece.id} piece={thePiece} isLoaded={component.state.isLoaded}/>
       })}
     </div>
 
