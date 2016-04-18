@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="col-md-6" style="max-width: 100%;">
-      <h2>By: <%= link_to @piece.artist.shop_name, artist_path(id: @piece.artist.id) %></h2>
+      <h3>By: <%= link_to @piece.artist.shop_name, artist_path(id: @piece.artist.id) %></h3>
       <% if @current_user && @current_user == @piece.artist.user %>
         <h4>
           <%= link_to edit_piece_path(id: @piece.id) do %>
@@ -40,6 +40,13 @@
       <p>
         <%= simple_format @piece.description %>
       </p>
+      <% if @piece.categories && @piece.categories.count > 0 %>
+        <em>
+          <%= pluralize @piece.categories.count, 'Category' %>:
+          <%= @piece.categories.map{|category| category.name}.join(', ') %>
+          <br><br>
+        </em>
+      <% end %>
       <% if @piece.inventory != 0 %>
         <h5><%= number_to_currency @piece.price %></h5>
       <% else %>
