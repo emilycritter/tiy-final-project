@@ -4,30 +4,30 @@ class Api::PiecesController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
   def index
+    @categories = Category.all.order("name asc")
+    @pieces = Piece.all
+
+    case params[:sort]
+    when "lowhigh" then @pieces = @pieces.where('inventory > 0').order("price asc")
+      when "highlow" then @pieces = @pieces.where('inventory > 0').order("price desc")
+      when "newestfirst" then @pieces = @pieces.where('inventory > 0').order("created_at desc")
+      when "popular" then @pieces = @pieces.where('inventory > 0').order("view_count desc")
+      when "nameasc" then @pieces = @pieces.where('inventory > 0').order("title asc")
+      when "namedesc" then @pieces = @pieces.where('inventory > 0').order("title desc")
+      else @pieces = @pieces.where('inventory > 0').order("created_at desc")
+    end
+
     search_text = params[:search]
     search_min = params[:search_min]
     search_max = params[:search_max]
-
-    case params[:sort]
-      when "lowhigh" then @pieces = Piece.where('inventory > 0').order("price asc")
-      when "highlow" then @pieces = Piece.where('inventory > 0').order("price desc")
-      when "newestfirst" then @pieces = Piece.where('inventory > 0').order("created_at desc")
-      when "popular" then @pieces = Piece.where('inventory > 0').order("view_count desc")
-      when "nameasc" then @pieces = Piece.where('inventory > 0').order("title asc")
-      when "namedesc" then @pieces = Piece.where('inventory > 0').order("title desc")
-      else @pieces = Piece.where('inventory > 0').order("created_at desc")
-    end
-
     @pieces = @pieces.search_all(search_text) if search_text.present?
-    if search_min.present? && search_max.present?
-      @pieces = @pieces.where('? <= price AND price <= ?', search_min, search_max)
-    elsif search_min.present?
-      @pieces = @pieces.where('? <= price', search_min)
-    elsif search_max.present?
-      @pieces = @pieces.where('price <= ?', search_max)
+    @pieces = @pieces.where('? <= price', search_min) if search_min.present?
+    @pieces = @pieces.where('price <= ?', search_max) if search_max.present?
+    @pieces = @pieces.where('? <= price AND price <= ?', search_min, search_max) if search_min.present? && search_max.present?
+    if params[:filter_cat].present?
+      piece_categories = PieceCategory.joins(:piece, :category).where(category_id: params[:filter_cat])
+      @pieces = @pieces.where id: piece_categories.map{|r| r.piece_id}
     end
-    @pieces = @pieces.page(params[:page]).per(48)
-    @pieces_count = @pieces.count
   end
 
   def show
