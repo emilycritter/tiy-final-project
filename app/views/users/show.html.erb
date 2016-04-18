@@ -6,7 +6,12 @@
         <h4><%= @user.location.upcase %></h4>
       <% end %>
       <br>
-      <h5><%= link_to "Edit Profile", edit_user_path(id: @user.id) %></h5>
+      <h5>
+        <%= link_to "Edit User Profile", edit_user_path(id: @user.id) %>&nbsp;
+        <% if @user.artist %>
+          <small>(<%= link_to "Edit Artist Profile", edit_artist_path(id: @user.artist.user_id) %>)</small>
+        <% end %>
+      </h5>
       <hr>
     </div>
     <div class="col-md-9">
