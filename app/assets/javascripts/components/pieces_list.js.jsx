@@ -5,12 +5,14 @@ var PiecesList = React.createClass({
   getInitialState(){
     return {
       pieces: [],
+      maxEntries: 48,
       isLoaded: false
     }
   },
 
   componentDidMount(){
     var component = this;
+    $('.no-results').css('display', 'none');
     component.fetchPieces()
     this.autoUpdatingInterval = setInterval(function(){
       component.fetchPieces()
@@ -39,8 +41,13 @@ var PiecesList = React.createClass({
 
   render: function() {
     var component = this;
+    if (this.state.pieces.length === 0) {
+      $('.no-results').css('display', 'block');
+    }
+
     return <div className="container">
-      {this.state.pieces.map(function(thePiece){
+      <h2 className="no-results"><em> No results found.</em></h2>
+      {this.state.pieces.slice(0, this.state.maxEntries).map(function(thePiece){
         return <PieceTile key={thePiece.id} piece={thePiece} isLoaded={component.state.isLoaded}/>
       })}
     </div>

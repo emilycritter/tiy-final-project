@@ -6,18 +6,6 @@
   <% end %>
 
   <br>
-  <h5>Shop by Category</h5>
-  <hr>
-  <ul class="ul-options">
-    <li>
-      Art
-    </li>
-    <li>
-      Jewelry
-    </li>
-  </ul>
-
-  <br>
   <h5>Shop by Location</h5>
   <hr>
   <ul class="ul-options">
@@ -33,6 +21,16 @@
     <li>
       <%= form_tag root_path, method: :get do %>
         <br>
+        <h5>Shop by Category</h5>
+        <hr>
+        <%=
+          select_tag :filter_cat, options_for_select(
+            @categories.map{|category| [category.name, category.id]}
+          ),
+          prompt: "Select category",
+          class: "btn", id: "sortby-dropdown", onchange: "this.form.submit();"
+        %>
+        <br><br>
         <h5>Keyword</h5>
         <hr>
         <%= text_field_tag :search, params[:search] %>
@@ -61,6 +59,8 @@
         %>
         <%= submit_tag "Search", style:"display: none;" %>
       <% end %>
+      <br>
+      <%= link_to "Clear filters", root_path, class: "btn btn-default" %>
     </li>
   </ul>
 </div>
