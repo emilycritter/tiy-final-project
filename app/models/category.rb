@@ -3,8 +3,8 @@ class Category < ActiveRecord::Base
 
   validates :name, inclusion: { in: %w(Art Ceramic Drawing/Sketch
     Mixed-media/Collage Painting Acrylic Oil Watercolor Pastel Photography
-    Collectibles Glass Sculpture Prints Fiber/Textile Clothing Purse/Bag
-    Jewelry Necklace Bracelet Earrings Rings Cuff-links Accessories),
+    Collectible Glass Sculpture Print Fiber/Textile Clothing Purse/Bag
+    Jewelry Necklace Bracelet Earring Ring Cuff-link Accessories),
   message: "%{value} is not a valid category" }
 
   validates :name, :uniqueness => {:case_sensitive => false}
