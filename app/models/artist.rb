@@ -7,7 +7,7 @@ class Artist < ActiveRecord::Base
   belongs_to :user
 
   validates :shop_name, :location, presence: true
-  validates :name_parameterize, uniqueness: true
+  validates :name_parameterize, :uniqueness => {:case_sensitive => false}
 
   attachment :photo
 
