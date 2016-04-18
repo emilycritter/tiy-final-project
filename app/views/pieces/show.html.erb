@@ -24,7 +24,12 @@
       </div>
     </div>
     <div class="col-md-6" style="max-width: 100%;">
-      <h3>By: <%= link_to @piece.artist.shop_name, artist_path(id: @piece.artist.id) %></h3>
+      <h3>
+        By: <%= link_to @piece.artist.shop_name, artist_path(id: @piece.artist.id) %>&nbsp;
+        <% if @piece.artist.city_state %>
+          <small>(<%= @piece.artist.city_state.downcase %>)</small>
+        <% end %>
+      </h3>
       <% if @current_user && @current_user == @piece.artist.user %>
         <h4>
           <%= link_to edit_piece_path(id: @piece.id) do %>
