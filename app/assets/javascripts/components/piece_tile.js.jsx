@@ -1,5 +1,5 @@
 var PieceTile = React.createClass({
-  componentWillMount(){
+  componentDidMount(){
     $('.price').css('display', 'none');
   },
 
