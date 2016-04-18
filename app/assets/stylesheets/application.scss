@@ -153,6 +153,11 @@ footer {
   padding: 15px;
   max-width: 100%;
 }
+.search-filter-nav {
+  .ul-options {
+    padding-left: 15px;
+  }
+}
 
 @media screen and (max-width: 1024px) {
   .flip-container {
