@@ -34,7 +34,7 @@ class Artist < ActiveRecord::Base
     Rails.application.routes.url_helpers.artist_path(id: id)
   end
 
-  def city
-
+  def city_state
+    [city, state].join(', ')
   end
 end

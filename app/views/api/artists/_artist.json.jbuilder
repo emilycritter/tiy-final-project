@@ -5,6 +5,12 @@ json.artist_piece_count artist.pieces.count
 json.bio artist.bio
 json.artist_url artist.artist_url
 json.photo_url artist.photo_url
+json.location artist.location
+json.latitude artist.latitude
+json.longitude artist.longitude
+json.city artist.city
+json.state artist.state
+json.city_state artist.city_state
 
 json.user_id artist.user_id
 json.first_name artist.user.first_name
