@@ -81,7 +81,7 @@ class Api::PiecesController < ApplicationController
   end
 
   def piece_params
-    params.require(:piece).permit(:title, :price, :inventory, :description, :photo, :artist_id)
+    params.require(:piece).permit(:title, :price, :inventory, :description, :photo, :artist_id, category_ids: [])
   end
 
 end
