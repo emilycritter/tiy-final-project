@@ -28,6 +28,9 @@ blockquote {
 html, body {
   height: 100%;
 }
+li {
+  list-style: none;
+}
 body:before {
 	content:"";
 	height:100%;
@@ -44,7 +47,6 @@ header {
 .nav {
   max-height: 44px;
 }
-
 .content-wrapper {
   min-height: 100%;
   padding-bottom: 60px;
@@ -145,6 +147,11 @@ footer {
     }
   }
 }
+.my-row {
+  display: flex;
+  flex-direction: row;
+  padding: 15px;
+}
 
 @media screen and (max-width: 1024px) {
   .flip-container {
@@ -152,6 +159,11 @@ footer {
   }
   .art {
     // background-color: red;
+  }
+  .search-filter-nav {
+    h5, li, select {
+      font-size: 12px;
+    }
   }
 }
 

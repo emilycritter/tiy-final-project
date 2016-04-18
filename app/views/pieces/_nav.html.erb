@@ -1,64 +1,66 @@
-<% if @current_user && @current_user.favorites %>
+<div class="search-filter-nav">
+  <% if @current_user && @current_user.favorites %>
+    <br>
+    <h5><%= link_to "View Favorites", user_path(id: @current_user.id) %></h5>
+    <hr>
+  <% end %>
+
   <br>
-  <h5><%= link_to "View Favorites", user_path(id: @current_user.id) %></h5>
+  <h5>Shop by Category</h5>
   <hr>
-<% end %>
+  <ul>
+    <li>
+      Art
+    </li>
+    <li>
+      Jewelry
+    </li>
+  </ul>
 
-<br>
-<h5>Shop by Category</h5>
-<hr>
-<ul>
-  <li>
-    Art
-  </li>
-  <li>
-    Jewelry
-  </li>
-</ul>
+  <br>
+  <h5>Shop by Location</h5>
+  <hr>
+  <ul>
+    <li>
+      Local
+    </li>
+    <li>
+      Anywhere
+    </li>
+  </ul>
 
-<br>
-<h5>Shop by Location</h5>
-<hr>
-<ul>
-  <li>
-    Local
-  </li>
-  <li>
-    Anywhere
-  </li>
-</ul>
-
-<ul class="nav nav-pills nav-stacked">
-  <li>
-    <%= form_tag root_path, method: :get do %>
-      <br>
-      <h5>Keyword</h5>
-      <hr>
-      <%= text_field_tag :search, params[:search] %>
-      <br><br>
-      <h5>Price</h5>
-      <hr>
-      <p>
-        <%= text_field_tag :search_min, params[:search_min], style:"max-width: 40%;", placeholder: number_to_currency(0) %>
-        &nbsp;-&nbsp;
-        <%= text_field_tag :search_max, params[:search_max], style:"max-width: 40%;", placeholder: number_to_currency(@pieces.map{|piece| piece.price}.max) %>
-      </p>
-      <br>
-      <h5>Sort</h5>
-      <hr>
-      <%=
-        select_tag :sort, options_for_select([
-          ["Price - Low to High", "lowhigh"],
-          ["Price - High to Low", "highlow"],
-          ["New Arrivals", "newestfirst"],
-          ["Popularity", "popular"],
-          ["Name - Ascending", "nameasc"],
-          ["Name - Descending", "namedesc"]
-        ]),
-        prompt: "Sort by",
-        class: "btn", id: "sortby-dropdown", onchange: "this.form.submit();"
-      %>
-      <%= submit_tag "Search", style:"display: none;" %>
-    <% end %>
-  </li>
-</ul>
+  <ul class="nav nav-pills nav-stacked">
+    <li>
+      <%= form_tag root_path, method: :get do %>
+        <br>
+        <h5>Keyword</h5>
+        <hr>
+        <%= text_field_tag :search, params[:search] %>
+        <br><br>
+        <h5>Price</h5>
+        <hr>
+        <p>
+          <%= text_field_tag :search_min, params[:search_min], style:"max-width: 40%;", placeholder: number_to_currency(0) %>
+          &nbsp;-&nbsp;
+          <%= text_field_tag :search_max, params[:search_max], style:"max-width: 40%;", placeholder: number_to_currency(@pieces.map{|piece| piece.price}.max) %>
+        </p>
+        <br>
+        <h5>Sort</h5>
+        <hr>
+        <%=
+          select_tag :sort, options_for_select([
+            ["Price - Low to High", "lowhigh"],
+            ["Price - High to Low", "highlow"],
+            ["New Arrivals", "newestfirst"],
+            ["Popularity", "popular"],
+            ["Name - Ascending", "nameasc"],
+            ["Name - Descending", "namedesc"]
+          ]),
+          prompt: "Sort by",
+          class: "btn", id: "sortby-dropdown", onchange: "this.form.submit();"
+        %>
+        <%= submit_tag "Search", style:"display: none;" %>
+      <% end %>
+    </li>
+  </ul>
+</div>
