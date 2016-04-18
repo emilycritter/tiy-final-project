@@ -15,7 +15,7 @@ class Api::PiecesController < ApplicationController
       when "popular" then @pieces = Piece.where('inventory > 0').order("view_count desc")
       when "nameasc" then @pieces = Piece.where('inventory > 0').order("title asc")
       when "namedesc" then @pieces = Piece.where('inventory > 0').order("title desc")
-      else @pieces = Piece.where('inventory > 0').order("view_count desc")
+      else @pieces = Piece.where('inventory > 0').order("created_at desc")
     end
 
     @pieces = @pieces.search_all(search_text) if search_text.present?

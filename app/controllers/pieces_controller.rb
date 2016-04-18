@@ -4,7 +4,7 @@ class PiecesController < ApplicationController
     search_min = params[:search_min].to_i
     search_max = params[:search_max].to_i
 
-    @pieces = Piece.where('inventory > 0').order("view_count desc")
+    @pieces = Piece.where('inventory > 0').order("created_at desc")
 
     case params[:sort]
       when "lowhigh" then @pieces = @pieces.order("price asc")
