@@ -8,7 +8,7 @@ class PiecesController < ApplicationController
 
     case params[:sort]
       when "lowhigh" then @pieces = @pieces.order("price asc")
-      when "highlow" then @pieces = @pieces.order("price asc")
+      when "highlow" then @pieces = @pieces.order("price desc")
       when "newestfirst" then @pieces = @pieces.order("created_at desc")
       when "popular" then @pieces = @pieces.order("view_count desc")
       when "nameasc" then @pieces = @pieces.order("title asc")

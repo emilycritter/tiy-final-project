@@ -10,7 +10,7 @@ class Api::PiecesController < ApplicationController
 
     case params[:sort]
       when "lowhigh" then @pieces = Piece.where('inventory > 0').order("price asc")
-      when "highlow" then @pieces = Piece.where('inventory > 0').order("price asc")
+      when "highlow" then @pieces = Piece.where('inventory > 0').order("price desc")
       when "newestfirst" then @pieces = Piece.where('inventory > 0').order("created_at desc")
       when "popular" then @pieces = Piece.where('inventory > 0').order("view_count desc")
       when "nameasc" then @pieces = Piece.where('inventory > 0').order("title asc")
