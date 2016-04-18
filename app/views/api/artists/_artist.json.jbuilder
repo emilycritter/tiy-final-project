@@ -17,6 +17,7 @@ json.first_name artist.user.first_name
 json.last_name artist.user.last_name
 json.email artist.user.email
 json.phone_number artist.user.phone_number
+json.user_location artist.user.location
 
 json.pieces artist.pieces do |piece|
   json.id piece.id
