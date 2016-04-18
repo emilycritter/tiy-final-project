@@ -31,13 +31,15 @@ class Api::UsersController < ApplicationController
     @user = User.find_by id: params[:id]
 
     if @current_user && @current_user == @user
+      @user.latitude = params[:user][:latitiude].to_f
+      @user.longitude = params[:user][:longitude].to_f
       if @user.update user_params
         render :show
       else
         render json: {errors: @user.errors}, status: 422
       end
     else
-      render json: {errors: @user.errors}, status: 401      
+      render json: {errors: @user.errors}, status: 401
     end
   end
 
@@ -50,6 +52,6 @@ class Api::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :phone_number, :password, :password_confirmation, :latitude, :longitude)
+    params.require(:user).permit(:first_name, :last_name, :email, :phone_number, :password, :password_confirmation, :location, :latitude, :longitude)
   end
 end

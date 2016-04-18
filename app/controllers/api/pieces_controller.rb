@@ -6,6 +6,10 @@ class Api::PiecesController < ApplicationController
   def index
     @categories = Category.all.order("name asc")
     @pieces = Piece.all
+    if @current_user && @current_user.location
+      nearby_artists = Artist.geocoded.near(@current_user, 10)
+      @pieces = @pieces.where artist_id: nearby_artists.map{|artist| artist.id}
+    end
 
     case params[:sort]
     when "lowhigh" then @pieces = @pieces.where('inventory > 0').order("price asc")
