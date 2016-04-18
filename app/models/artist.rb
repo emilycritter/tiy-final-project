@@ -14,6 +14,14 @@ class Artist < ActiveRecord::Base
   geocoded_by :location
   after_validation :geocode if :location
 
+  reverse_geocoded_by :latitude, :longitude do |obj,results|
+    if geo = results.first
+      obj.city = geo.city
+      obj.state = geo.state
+    end
+  end
+
+  after_validation :reverse_geocode
 
   include PgSearch
   pg_search_scope :search_all, :against => [:shop_name, :bio, :location]
@@ -24,5 +32,9 @@ class Artist < ActiveRecord::Base
 
   def artist_url
     Rails.application.routes.url_helpers.artist_path(id: id)
+  end
+
+  def city
+
   end
 end
