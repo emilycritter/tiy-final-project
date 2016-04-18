@@ -14,6 +14,11 @@ json.user do
       json.price piece.price
       json.description piece.description
       json.photo piece.photo
+      json.photo_url piece.photo_url
+      json.categories piece.categories.each do |category|
+        json.id category.id
+        json.name category.name
+      end
     end
   end
 end

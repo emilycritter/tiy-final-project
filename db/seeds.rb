@@ -296,3 +296,30 @@ The current turnaround time is approximately 2 weeks to complete the painting. T
   end
   art.save
 end
+
+if Category.count == 0
+  Category.create! name: "Art"
+  Category.create! name: "Ceramic"
+  Category.create! name: "Drawing/Sketch"
+  Category.create! name: "Mixed-media/Collage"
+  Category.create! name: "Painting"
+  Category.create! name: "Acrylic"
+  Category.create! name: "Oil"
+  Category.create! name: "Watercolor"
+  Category.create! name: "Pastel"
+  Category.create! name: "Photography"
+  Category.create! name: "Collectible"
+  Category.create! name: "Glass"
+  Category.create! name: "Sculpture"
+  Category.create! name: "Print"
+  Category.create! name: "Fiber/Textile"
+  Category.create! name: "Clothing"
+  Category.create! name: "Purse/Bag"
+  Category.create! name: "Jewelry"
+  Category.create! name: "Necklace"
+  Category.create! name: "Bracelet"
+  Category.create! name: "Earring"
+  Category.create! name: "Ring"
+  Category.create! name: "Cuff-link"
+  Category.create! name: "Accessories"
+end

@@ -14,6 +14,10 @@ json.artist do
   json.city_state piece.artist.city_state
   json.user_id piece.artist.user_id
 end
+json.categories piece.categories.each do |category|
+  json.id category.id
+  json.name category.name
+end
 json.photo piece.photo
 json.photo_url piece.photo_url
 json.piece_url piece_path(id: piece.id)
