@@ -1,4 +1,10 @@
 var PieceTile = React.createClass({
+  componentWillMount(){
+    $('.price').css('display', 'none');
+  },
+  componentDidMount(){
+    $('.price').css('display', 'block');
+  },
 
   render(){
 
