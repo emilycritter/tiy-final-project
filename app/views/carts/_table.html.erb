@@ -10,11 +10,14 @@
       </td>
       <td>
         <%= link_to order_item.piece.title, piece_path(id: order_item.piece.id) %>
+        <small>From: <%= order_item.piece.artist.shop_name %></small>
       </td>
       <td>
         <strong><%= order_item.quantity %></strong>
         &nbsp;
-        <%= link_to 'Remove from Cart', remove_from_cart_path(piece_id: order_item.piece_id), class: '', method: :delete %>
+        <% if @order.status == 'cart' %>
+          <%= link_to 'Remove from Cart', remove_from_cart_path(piece_id: order_item.piece_id), class: '', method: :delete %>
+        <% end %>
       </td>
       <td class="cart-price">
         <%= number_to_currency order_item.total_price %>
