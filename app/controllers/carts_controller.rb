@@ -69,5 +69,12 @@ class CartsController < ApplicationController
 
   def receipt
     @order = Order.find_by! order_confirmation: params[:order_confirmation], user_id: @current_user.id
+    @artists = @order.order_items.map{|order_item| order_item.piece.artist}
+
+    ReceiptMailer.order_confirmation(@order, @current_user, @artists).deliver_now
+
+    @artists.each do |artist|
+      ReceiptMailer.artist_order_notice(@order, @current_user, artist).deliver_now
+    end
   end
 end
