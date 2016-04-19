@@ -1,3 +1,33 @@
-ReceiptMailer#order_confirmation
+<%= @greeting %>, <%= @artist.user.full_name %> (<%= @artist.shop_name %>)
 
-<%= @greeting %>, find me in app/views/receipt_mailer/order_confirmation.text.erb
+<%= @user.full_name %> is interested in your work!
+While we are committed to providing you a great digital marketplace for selling your local artwork,
+we are currently in the development phase. We have shared your contact information with the prospective
+purchaser. We have also included their contact information below should you want to reach out.
+Thank you for your support! We look forward to getting this great app into production soon!!
+
+The order confirmation number is #<%= @order.order_confirmation %>.
+
+  <% @items.each do |order_item| %>
+    Piece: <%= order_item.piece.title %>
+    Quantity: <%= order_item.quantity %>
+    Price: <%= number_to_currency order_item.total_price %>
+  <% end %>
+
+Contact information shared with the client
+    Artist: <%= @artist.shop_name %>
+    Location: <%= @artist.city_state %> (<%= @artist.location %>)
+    Email: <%= @artist.user.email %>
+    Phone: <%= number_to_phone @artist.user.phone_number %>
+
+Client's contact information
+    Client: <%= @user.full_name %>
+    Email: <%= @user.email %>
+    Phone: <%= number_to_phone @user.phone_number %>
+
+Thank you again for supporting at buy-local-art.com!
+
+  Emily Ritter
+  Owner and Developer of buy-local-art.com
+  emily.c.ritter@gmail.com
+  c: 817.932.0687

@@ -4,10 +4,10 @@
 
 <p>
   Thank you for you recent order from buy-local-art.com. While we are committed to providing you great
-  local art, we are currently in development phase.
+  local art, we are currently in the development phase.
   <strong>Your card has not been charged for any recent purchases </strong>,
   but the artists have been notified of your interest in their work. We've included the artists' contact
-  information below should you want to reach out. Thank you for your support! We looks forward
+  information below should you want to reach out. Thank you for your support! We look forward
   to getting this great app into production soon!!
 </p>
 
@@ -25,7 +25,7 @@
       Artist: <%= artist.shop_name %> <br>
       Location: <%= artist.city_state %> <small>(<%= artist.location %>)</small> <br>
       Email: <%= artist.user.email %> <br>
-      Phone: <%= number_to_phone artist.user.phone %> <br>
+      Phone: <%= number_to_phone artist.user.phone_number %> <br>
     </p>
   <% end %>
 </div>

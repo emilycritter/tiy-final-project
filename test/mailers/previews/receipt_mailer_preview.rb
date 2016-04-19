@@ -8,7 +8,7 @@ class ReceiptMailerPreview < ActionMailer::Preview
 
   # Preview this email at http://localhost:3000/rails/mailers/receipt_mailer/artist_order_notice
   def artist_order_notice
-    ReceiptMailer.artist_order_notice(Order.first, User.first, Artist.first)
+    ReceiptMailer.artist_order_notice(Order.first, User.first, Artist.find_by(id: 4))
   end
 
 end

@@ -18,6 +18,15 @@
           <% end %>
         <% end %>
       </blockquote>
+      <div class="" style="margin: 10px auto; display: flex; justify-content: center;">
+        <% if @artist.user.email.present? %>
+          <%= mail_to @artist.user.email,
+              subject: "I'm interested in your work on buy-local-art.com!",
+              class: "btn btn-default" do %>
+            Email Artist
+          <% end %>
+        <% end %>
+      </div>
       <% if @current_user && @artist == @current_user.artist %>
         <h1>
           <%= link_to new_piece_path do %>

@@ -19,7 +19,9 @@ class ReceiptMailer < ApplicationMailer
   def artist_order_notice(the_order, the_user, the_artist)
     @order = the_order
     @user = the_user
-    @artists = the_artist
+    @artist = the_artist
+
+    @items = @order.order_items.select{|item| item.piece.artist_id == @artist.id}
 
     @greeting = "Hi"
 
