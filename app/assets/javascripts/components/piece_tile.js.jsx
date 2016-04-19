@@ -23,7 +23,7 @@ var PieceTile = React.createClass({
     };
 
     return <div className="flip-container">
-      <a href={piece.piece_url}>
+      <a href={piece.piece_url} style={{maxWidth: 100 + '%'}}>
         <div className="card img-responsive" id="{piece.id}">
           <div className="front">
               <img src={piece.photo_url} className="img-responsive my-img" />

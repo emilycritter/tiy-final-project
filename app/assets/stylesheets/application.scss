@@ -152,6 +152,16 @@ footer {
   flex-direction: row;
   padding: 15px;
   max-width: 100%;
+  .my-col-9 {
+    max-width: 75%;
+  }
+  .my-col-3 {
+    max-width: 25%;
+    form, select, input {
+      max-width: 100%;
+    }
+    padding-right: 15px;
+  }
 }
 .search-filter-nav {
   .ul-options {
@@ -196,6 +206,14 @@ footer {
   .art {
     // background-color: blue;
   }
+  .my-row {
+    .my-col-9 {
+      width: 60%;
+    }
+    .my-col-3 {
+      max-width: 40%;
+    }
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -204,9 +222,6 @@ footer {
   }
   h5 {
     font-size: 14px;
-  }
-  .art {
-    // background-color: green;
   }
 }
 
