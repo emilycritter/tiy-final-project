@@ -5,6 +5,8 @@ var PiecesList = React.createClass({
   getInitialState(){
     return {
       pieces: [],
+      nearbyPieces: [],
+      categories: [],
       maxEntries: 48,
       isLoaded: false
     }
@@ -13,10 +15,10 @@ var PiecesList = React.createClass({
   componentDidMount(){
     var component = this;
     $('.no-results').css('display', 'none');
-    component.fetchPieces()
+    component.fetchPieces();
     this.autoUpdatingInterval = setInterval(function(){
       component.fetchPieces()
-    }, 3000)
+    }, 5000);
   },
 
   componentWillUnmount(){
@@ -34,22 +36,56 @@ var PiecesList = React.createClass({
     .then(function(json){
       component.setState({
         pieces: json.pieces,
+        categories: json.categories,
+        nearbyPieces: json.nearby_pieces,
         isLoaded: true
       })
-    })
+    });
+  },
+
+  onCheckClick(){
+    var component = this;
+    if ($('#local-only').is(':checked')) {
+      if (component.state.nearby_pieces) {
+        component.setState({
+          pieces: component.state.nearby_pieces
+        })
+      } else {
+        component.setState({
+          pieces: []
+        })
+      }
+      clearInterval(component.autoUpdatingInterval);
+    } else if ($('#local-only').not(':checked')) {
+      component.fetchPieces();
+      component.autoUpdatingInterval = setInterval(function(){
+        component.fetchPieces()
+      }, 5000);
+      $('button.dropdown-toggle').html('Select category <span class="caret"></span>')
+    }
   },
 
   render: function() {
     var component = this;
+
     if (this.state.pieces.length === 0) {
       $('.no-results').css('display', 'block');
+    } else {
+      $('.no-results').css('display', 'none');
     }
 
-    return <div className="container">
-      <h2 className="no-results"><em> No results found.</em></h2>
-      {this.state.pieces.slice(0, this.state.maxEntries).map(function(thePiece){
-        return <PieceTile key={thePiece.id} piece={thePiece} isLoaded={component.state.isLoaded}/>
-      })}
+    return <div className="">
+      <div className="js-options">
+        <div className="checkbox">
+          <label><input type="checkbox" value="" id="local-only" onClick={component.onCheckClick}/>show local art only</label>
+        </div>
+      </div>
+      <div className="container">
+        <h2 className="no-results"><em> No results found.</em></h2>
+        {this.state.pieces.slice(0, this.state.maxEntries).map(function(thePiece){
+          return <PieceTile key={thePiece.id} piece={thePiece} isLoaded={component.state.isLoaded}/>
+        })}
+      </div>
     </div>
 
     ;

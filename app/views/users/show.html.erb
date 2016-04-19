@@ -1,10 +1,12 @@
 <div class="art">
   <div class="row">
     <div class="col-md-2">
-      <h3><%= @user.full_name %></h3>
-      <% if @user.latitude && @user.longitude %>
-        <h4><%= @user.location.upcase %></h4>
-      <% end %>
+      <h3>
+        <%= @user.full_name %>
+        <% if @user.latitude && @user.longitude %>
+          <small>(<%= @user.location.downcase %>)</small>
+        <% end %>
+      </h3>
       <br>
       <h5>
         <%= link_to "Edit User Profile", edit_user_path(id: @user.id) %>&nbsp;

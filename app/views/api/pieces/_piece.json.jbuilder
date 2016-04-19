@@ -18,6 +18,8 @@ json.categories piece.categories.each do |category|
   json.id category.id
   json.name category.name
 end
+json.category_array piece.categories.map{|category| category.name}
+json.category_string piece.categories.map{|category| category.name}.join(', ')
 json.photo piece.photo
 json.photo_url piece.photo_url
 json.piece_url piece_path(id: piece.id)

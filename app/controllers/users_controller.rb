@@ -5,9 +5,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new user_params
-    if request.location
-      @user.location = request.location.city if params[:location].nil?
-    end
     if @user.save
       session[:user_id] = @user.id
       redirect_to root_path
@@ -28,9 +25,8 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find_by id: params[:id]
-    if request.location
-      @user.location = request.location.city if params[:location].nil?
-    end
+    @user.latitude = params[:user][:latitiude].to_f
+    @user.longitude = params[:user][:longitude].to_f
     if @user.update user_params
       redirect_to user_path(id: @user.id)
     else

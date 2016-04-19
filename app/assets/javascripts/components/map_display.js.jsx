@@ -19,7 +19,7 @@ var MapDisplay = React.createClass({
       accessToken: 'pk.eyJ1IjoiZW1pbHljcml0dGVyIiwiYSI6ImNpbWdmZXhmYzAyMDV1NGx2bHM0MTNzNGYifQ.7KYzLItfXBfg5Zs-757BGw'
     }).addTo(mymap);
 
-    mymap.locate({setView: true, maxZoom: 13});
+    mymap.locate({setView: true, maxZoom: 11});
 
     function onLocationFound(e) {
       var radius = e.accuracy / 2;
