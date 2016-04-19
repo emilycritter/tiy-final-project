@@ -27,4 +27,8 @@ class Piece < ActiveRecord::Base
     Refile.attachment_url(self, :photo, :fill, 300, 300, format: "jpg")
   end
 
+  def piece_url
+    Rails.application.routes.url_helpers.piece_path(id: id)
+  end
+
 end

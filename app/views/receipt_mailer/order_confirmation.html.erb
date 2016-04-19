@@ -1,11 +1,39 @@
-<h1>ReceiptMailer#order_confirmation</h1>
-
 <p>
-  <%= @greeting %>, find me in app/views/receipt_mailer/order_confirmation.html.erb
+  <%= @greeting %>, <%= @user.full_name %>
 </p>
 
-<%= @order.order_confirmation %>
-<%= @user.full_name %>
-<% @artists.each do |artist| %>
-  <%= artist.shop_name %>
-<% end %>
+<p>
+  Thank you for you recent order from buy-local-art.com. While we are committed to providing you great
+  local art, we are currently in the development phase.
+  <strong>Your card has not been charged for any recent purchases </strong>,
+  but the artists have been notified of your interest in their work. We've included the artists' contact
+  information below should you want to reach out. Thank you for your support! We look forward
+  to getting this great app into production soon!!
+</p>
+
+<p>
+  Your order confirmation number is <strong>#<%= @order.order_confirmation %></strong>.
+</p>
+
+<hr>
+<%= render './carts/table' %>
+<hr>
+
+<div class="" style="margin-left: 20px;">
+  <% @artists.each do |artist| %>
+    <p>
+      Artist: <%= artist.shop_name %> <br>
+      Location: <%= artist.city_state %> <small>(<%= artist.location %>)</small> <br>
+      Email: <%= artist.user.email %> <br>
+      Phone: <%= number_to_phone artist.user.phone_number %> <br>
+    </p>
+  <% end %>
+</div>
+
+<h5>Thank you for shopping at buy-local-art.com!</h5>
+<p>
+  Emily Ritter <br>
+  Owner and Developer of <em>buy-local-art.com</em> <br>
+  emily.c.ritter@gmail.com <br>
+  c: 817.932.0687
+</p>

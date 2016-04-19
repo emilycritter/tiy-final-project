@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   validates :first_name, :last_name, :email, :password, presence: true
   validates :email, :uniqueness => {:case_sensitive => false}
+  validates :phone_number, format: { with: /\A[+-]?\d+\Z/, message: "remove characters" }
 
   geocoded_by :location
   after_validation :geocode if :location

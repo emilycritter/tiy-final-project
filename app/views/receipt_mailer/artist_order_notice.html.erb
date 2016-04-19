@@ -1,8 +1,77 @@
-<h1>ReceiptMailer#order_confirmation</h1>
-
 <p>
-  <%= @greeting %>, find me in app/views/receipt_mailer/order_confirmation.html.erb
+  <%= @greeting %>, <%= @artist.user.full_name %> <small>(<%= @artist.shop_name %>)</small>
 </p>
 
-<%= @order.order_confirmation %>
-<%= @user.full_name %>
+<p>
+  <strong><%= @user.full_name %></strong> is interested in your work!
+  While we are committed to providing you a great digital marketplace for selling your local artwork,
+  we are currently in the development phase. We have shared your contact information with the prospective
+  purchaser. We have also included their contact information below should you want to reach out. <br>
+  Thank you for your support! We look forward to getting this great app into production soon!!
+</p>
+
+<p>
+  The order confirmation number is <strong>#<%= @order.order_confirmation %></strong>.
+</p>
+
+<hr>
+<table class= "table table-hover" style="width:100%">
+  <th>Piece</th>
+  <th>&nbsp;</th>
+  <th>Quantity</th>
+  <th class="cart-price">Price</th>
+  <% @items.each do |order_item| %>
+    <tr>
+      <td>
+        <div class="img img-responsive"><%= image_tag attachment_url(order_item.piece, :photo, :fill, 150, 150, format: "jpg") %></div>
+      </td>
+      <td>
+        <%= link_to order_item.piece.title, piece_path(id: order_item.piece.id) %>
+        <small>From: <%= order_item.piece.artist.shop_name %></small>
+      </td>
+      <td>
+        <strong><%= order_item.quantity %></strong>
+      </td>
+      <td class="cart-price">
+        <%= number_to_currency order_item.total_price %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<hr>
+
+<p>
+  <strong>Contact information shared with the client</strong>
+</p>
+<hr>
+<div class="" style="margin-left: 20px;">
+  <p>
+    Artist: <%= @artist.shop_name %> <br>
+    Location: <%= @artist.city_state %> <small>(<%= @artist.location %>)</small> <br>
+    Email: <%= @artist.user.email %> <br>
+    Phone: <%= number_to_phone @artist.user.phone_number %> <br>
+  </p>
+</div>
+<hr>
+
+<p>
+  <strong>Client's contact information</strong>
+</p>
+<hr>
+<div class="" style="margin-left: 20px;">
+  <p>
+    Client: <%= @user.full_name %> <br>
+    Email: <%= @user.email %> <br>
+    Phone: <%= number_to_phone @user.phone_number %> <br>
+  </p>
+</div>
+<hr>
+
+
+<h5>Thank you again for supporting at buy-local-art.com!</h5>
+<p>
+  Emily Ritter <br>
+  Owner and Developer of <em>buy-local-art.com</em> <br>
+  emily.c.ritter@gmail.com <br>
+  c: 817.932.0687
+</p>
