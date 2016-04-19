@@ -1,26 +1,24 @@
 <table class= "table table-hover" style="width:100%">
-  <% if @order && @order.order_items.present? && @current_user %>
-    <th>Piece</th>
-    <th>&nbsp;</th>
-    <th>Quantity</th>
-    <th class="cart-price">Price</th>
-    <% @order.order_items.each do |order_item| %>
-      <tr>
-        <td>
-          <div class="img img-responsive"><%= image_tag attachment_url(order_item.piece, :photo, :fill, 150, 150, format: "jpg") %></div>
-        </td>
-        <td>
-          <%= link_to order_item.piece.title, piece_path(id: order_item.piece.id) %>
-        </td>
-        <td>
-          <strong><%= order_item.quantity %></strong>
-          &nbsp;
-          <%= link_to 'Remove from Cart', remove_from_cart_path(piece_id: order_item.piece_id), class: '', method: :delete %>
-        </td>
-        <td class="cart-price">
-          <%= number_to_currency order_item.total_price %>
-        </td>
-      </tr>
-    <% end %>
+  <th>Piece</th>
+  <th>&nbsp;</th>
+  <th>Quantity</th>
+  <th class="cart-price">Price</th>
+  <% @order.order_items.each do |order_item| %>
+    <tr>
+      <td>
+        <div class="img img-responsive"><%= image_tag attachment_url(order_item.piece, :photo, :fill, 150, 150, format: "jpg") %></div>
+      </td>
+      <td>
+        <%= link_to order_item.piece.title, piece_path(id: order_item.piece.id) %>
+      </td>
+      <td>
+        <strong><%= order_item.quantity %></strong>
+        &nbsp;
+        <%= link_to 'Remove from Cart', remove_from_cart_path(piece_id: order_item.piece_id), class: '', method: :delete %>
+      </td>
+      <td class="cart-price">
+        <%= number_to_currency order_item.total_price %>
+      </td>
+    </tr>
   <% end %>
 </table>
