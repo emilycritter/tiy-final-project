@@ -1,7 +1,7 @@
 <div class="container">
   <div class="cart">
     <h3>Thank you for your order!</h3>
-    <% if @order && @order.order_items.present? %>
+    <% if @order && @order.order_items.present? && @current_user %>
       <h3><small><%= @order.description %></small></h3>
       <%= render 'table' %>
       <hr>
