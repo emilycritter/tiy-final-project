@@ -1,14 +1,12 @@
 require 'open-uri'
 
 class Api::PiecesController < ApplicationController
-  skip_before_filter :verify_authenticity_token
-
   def index
     @categories = Category.all.order("name asc")
     @pieces = Piece.all
-    if @current_user && @current_user.location
-      nearby_artists = Artist.geocoded.near(@current_user, 10)
-      @pieces = @pieces.where artist_id: nearby_artists.map{|artist| artist.id}
+    if @current_user
+      nearby_artists = Artist.geocoded.near(@current_user, 20)
+      @nearby_pieces = @pieces.where(artist_id: nearby_artists.map{|artist| artist.id})
     end
 
     case params[:sort]
