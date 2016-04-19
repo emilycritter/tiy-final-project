@@ -3,7 +3,8 @@
 </p>
 
 <p>
-  Thank you for you recent order from buy-local-art.com. While we are committed to providing you great
+  Thank you for you recent order from <%= link_to "buy-local-art.com", root_path %>.
+  While we are committed to providing you great
   local art, we are currently in the development phase.
   <strong>Your card has not been charged for any recent purchases </strong>,
   but the artists have been notified of your interest in their work. We've included the artists' contact
@@ -30,10 +31,10 @@
   <% end %>
 </div>
 
-<h5>Thank you for shopping at buy-local-art.com!</h5>
+<h5>Thank you for shopping <%= link_to "buy-local-art.com", root_path %>!</h5>
 <p>
   Emily Ritter <br>
-  Owner and Developer of <em>buy-local-art.com</em> <br>
+  Owner and Developer of <em><%= link_to "buy-local-art.com", root_path %></em> <br>
   emily.c.ritter@gmail.com <br>
   c: 817.932.0687
 </p>
