@@ -18,7 +18,7 @@
           <% end %>
         <% end %>
       </blockquote>
-      <div class="" style="margin: 10px auto; display: flex; justify-content: center;">
+      <div class="" style="margin: 10px auto; display: flex; width: 100%; justify-content: center;">
         <% if @artist.user.email.present? %>
           <%= mail_to @artist.user.email,
               subject: "I'm interested in your work on buy-local-art.com!",
@@ -26,14 +26,16 @@
             Email Artist
           <% end %>
         <% end %>
+        <br>
       </div>
-      <% if @current_user && @artist == @current_user.artist %>
-        <h1>
-          <%= link_to new_piece_path do %>
+      <br>
+      <div class="" style="margin: 10px auto; display: flex; width: 100%; justify-content: center;">
+        <% if @current_user && @artist == @current_user.artist %>
+          <%= link_to new_piece_path, class: "btn btn-default" do %>
             <i class="fa fa-paint-brush" aria-hidden="true"></i> Add Art
           <% end %>
-        </h1>
-      <% end %>
+        <% end %>
+      </div>
     </div>
     <%= react_component('PiecesListByArtist', { data: @artist.id, max_entries: @artist.pieces.count  }) %>
   </div>
