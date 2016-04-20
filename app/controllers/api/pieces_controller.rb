@@ -4,9 +4,9 @@ class Api::PiecesController < ApplicationController
   def index
     @categories = Category.all.order("name asc")
     @pieces = Piece.all
-    if @current_user
+    if params[:location_filter] == 'local'
       nearby_artists = Artist.geocoded.near(@current_user, 20)
-      @nearby_pieces = @pieces.where(artist_id: nearby_artists.map{|artist| artist.id})
+      @pieces = @pieces.where(artist_id: nearby_artists.map{|artist| artist.id})
     end
 
     case params[:sort]

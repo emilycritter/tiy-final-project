@@ -15,4 +15,12 @@ class User < ActiveRecord::Base
     [first_name, last_name].join(' ')
   end
 
+  def nearby_artists
+    Artist.geocoded.near(self, 20)
+  end
+
+  def nearby_pieces
+    Piece.where(artist_id: self.nearby_artists.map{|artist| artist.id})
+  end
+
 end

@@ -16,7 +16,7 @@
             @categories.map{|category| [category.name, category.id]}
           ),
           prompt: "Select category",
-          class: "btn", id: "sortby-dropdown", onchange: "this.form.submit();"
+          class: "btn", id: "sortby-dropdown"
         %>
         <br><br>
         <h5>Keyword</h5>
@@ -31,6 +31,17 @@
           <%= text_field_tag :search_max, params[:search_max], style:"max-width: 40%;", placeholder: number_to_currency(@pieces.map{|piece| piece.price}.max) %>
         </p>
         <br>
+        <h5>Location</h5>
+        <hr>
+        <%=
+          select_tag :location_filter, options_for_select([
+            ["Local only", "local"],
+            ["All", "anywhere"]
+          ]),
+          prompt: "Sort by",
+          class: "btn", id: "location-filter"
+        %>
+        <br>
         <h5>Sort</h5>
         <hr>
         <%=
@@ -43,9 +54,9 @@
             ["Name - Descending", "namedesc"]
           ]),
           prompt: "Sort by",
-          class: "btn", id: "sortby-dropdown", onchange: "this.form.submit();"
+          class: "btn", id: "sortby-dropdown"
         %>
-        <%= submit_tag "Search", style:"display: none;" %>
+        <%= submit_tag "Search" %>
       <% end %>
       <br>
       <%= link_to "Clear filters", root_path, class: "btn btn-default" %>
