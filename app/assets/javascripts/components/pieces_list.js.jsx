@@ -1,31 +1,28 @@
 var PiecesList = React.createClass({
 
-  autoUpdatingInterval: null,
-
   getInitialState(){
     return {
       pieces: [],
-      nearbyPieces: [],
       categories: [],
       maxEntries: 48,
       isLoaded: false
     }
   },
 
+  pieces: [],
+
+  componentWillMount(){
+    this.fetchPieces(true);
+  },
+
   componentDidMount(){
-    var component = this;
-    $('.no-results').css('display', 'none');
-    component.fetchPieces();
-    this.autoUpdatingInterval = setInterval(function(){
-      component.fetchPieces()
-    }, 5000);
+    this.fetchPieces(true);
   },
 
   componentWillUnmount(){
-    clearInterval(this.autoUpdatingInterval)
   },
 
-  fetchPieces(){
+  fetchPieces(myBoolean){
     var component = this;
     var searchParams = window.location.search;
     var url = "/api/pieces.json/" + searchParams;
@@ -35,59 +32,43 @@ var PiecesList = React.createClass({
     })
     .then(function(json){
       component.setState({
-        pieces: json.pieces,
         categories: json.categories,
-        nearbyPieces: json.nearby_pieces,
-        isLoaded: true
-      })
+        isLoaded: true,
+        pieces: json.pieces
+      });
     });
   },
 
-  onCheckClick(){
-    var component = this;
+  onCheckClick(myBoolean){
     if ($('#local-only').is(':checked')) {
-      if (component.state.nearby_pieces) {
-        component.setState({
-          pieces: component.state.nearby_pieces
-        })
-      } else {
-        component.setState({
-          pieces: []
-        })
-      }
-      clearInterval(component.autoUpdatingInterval);
+      myBoolean = false;
     } else if ($('#local-only').not(':checked')) {
-      component.fetchPieces();
-      component.autoUpdatingInterval = setInterval(function(){
-        component.fetchPieces()
-      }, 5000);
-      $('button.dropdown-toggle').html('Select category <span class="caret"></span>')
+      myBoolean = true;
     }
+    this.fetchPieces(myBoolean);
   },
 
   render: function() {
     var component = this;
 
-    if (this.state.pieces.length === 0) {
-      $('.no-results').css('display', 'block');
-    } else {
+    if (this.pieces.length > 0) {
       $('.no-results').css('display', 'none');
+    } else {
+      $('.no-results').css('display', 'block');
     }
 
     return <div className="">
       <div className="js-options">
         <div className="checkbox">
-          <label><input type="checkbox" value="" id="local-only" onClick={component.onCheckClick}/>show local art only</label>
+          <label><input type="checkbox" value="" id="local-only" onClick={component.onCheckClick} />show local art only</label>
         </div>
       </div>
       <div className="container">
         <h2 className="no-results"><em> No results found.</em></h2>
-        {this.state.pieces.slice(0, this.state.maxEntries).map(function(thePiece){
+        {this.pieces.slice(0, this.state.maxEntries).map(function(thePiece){
           return <PieceTile key={thePiece.id} piece={thePiece} isLoaded={component.state.isLoaded}/>
         })}
       </div>
     </div>
-
-    ;
   }
 });
