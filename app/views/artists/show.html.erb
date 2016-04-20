@@ -21,7 +21,7 @@
       <div class="" style="margin: 10px auto; display: flex; width: 100%; justify-content: center;">
         <% if @artist.user.email.present? %>
           <%= mail_to @artist.user.email,
-              subject: "I'm interested in your work on buy-local-art.com!",
+              subject: "I'm interested in your work on where-art-thou.herokuapp.com!",
               class: "btn btn-default" do %>
             Email Artist
           <% end %>

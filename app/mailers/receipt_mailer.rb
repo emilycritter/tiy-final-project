@@ -12,7 +12,7 @@ class ReceiptMailer < ApplicationMailer
 
     @greeting = "Hi"
 
-    mail to: @user.email, subject: "Order Confirmation from buylocalart.herokuapp.com (#{@order.order_confirmation})"
+    mail to: @user.email, subject: "Order Confirmation from where-art-thou.herokuapp.com (#{@order.order_confirmation})"
 
   end
 
@@ -25,6 +25,6 @@ class ReceiptMailer < ApplicationMailer
 
     @greeting = "Hi"
 
-    mail to: @user.email, bcc: "emily.c.ritter@gmail.com", subject: "Order Notice from buylocalart.herokuapp.com (#{@order.order_confirmation})"
+    mail to: @user.email, bcc: "emily.c.ritter@gmail.com", subject: "Order Notice from where-art-thou.herokuapp.com (#{@order.order_confirmation})"
   end
 end

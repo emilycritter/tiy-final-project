@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "from@buy-local-art.com"
+  default from: "from@where-art-thou.herokuapp.com"
   layout 'mailer'
 end
