@@ -12,6 +12,8 @@ class Piece < ActiveRecord::Base
   include PgSearch
   pg_search_scope :search_all, :against => [:title, :description], :associated_against => {
     :artist => [:shop_name] }
+  pg_search_scope :search_location, :associated_against => {
+    :artist => [:location] }
 
   def price_in_cents
     price * 100

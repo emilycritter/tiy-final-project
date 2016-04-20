@@ -14,9 +14,11 @@ class PiecesController < ApplicationController
     end
 
     search_text = params[:search]
+    location_text = params[:search_location]
     search_min = params[:search_min]
     search_max = params[:search_max]
     @pieces = @pieces.search_all(search_text) if search_text.present?
+    @pieces = @pieces.search_location(location_text) if location_text.present?
     @pieces = @pieces.where('? <= price', search_min) if search_min.present?
     @pieces = @pieces.where('price <= ?', search_max) if search_max.present?
     @pieces = @pieces.where('? <= price AND price <= ?', search_min, search_max) if search_min.present? && search_max.present?

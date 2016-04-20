@@ -9,6 +9,10 @@
     <li>
       <%= form_tag root_path, method: :get do %>
         <br>
+        <h5>Location</h5>
+        <hr>
+        <%= text_field_tag :search_location, params[:search_location] %>
+        <br><br>
         <h5>Shop by Category</h5>
         <hr>
         <%=
