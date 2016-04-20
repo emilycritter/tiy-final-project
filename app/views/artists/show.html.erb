@@ -11,12 +11,6 @@
       <blockquote style="width: 100%; text-align: center;">
         <br>
         <%= @artist.bio %>
-        <% if @current_user && @artist == @current_user.artist %>
-          &nbsp;&nbsp;&nbsp;
-          <%= link_to edit_artist_path(id: @artist.id) do %>
-            <i class="fa fa-edit" aria-hidden="true"></i> Edit Profile
-          <% end %>
-        <% end %>
       </blockquote>
       <div class="" style="margin: 10px auto; display: flex; width: 100%; justify-content: center;">
         <% if @artist.user.email.present? %>
