@@ -61,23 +61,25 @@
         Add to Cart
       <% end %>
       <br><br>
+      <hr>
       <% if @piece.artist.pieces.count > 1 %>
-        <hr>
         <h5>Other work by this artist: </h5>
         <div class="art" style="max-width: 100%;">
           <%= react_component('PiecesListByArtist', { data: @piece.artist.id, max_entries: 4 }) %>
-          <div class="" style="margin: 10px auto; display: flex; justify-content: center;">
-            <% if @piece.artist.user.email.present? %>
-              <%= mail_to @piece.artist.user.email,
-                  subject: "I'm interested in your work on where-art-thou.herokuapp.com! (#{@piece.title})",
-                  body: "I found your work on where-art-thou.herokuapp.com (https://where-art-thou.herokuapp.com#{@piece.piece_url})",
-                  class: "btn btn-default" do %>
-                Email Artist
-              <% end %>
-            <% end %>
-          </div>
         </div>
       <% end %>
+      <div class="art" style="max-width: 100%;">
+        <div class="" style="margin: 10px auto; display: flex; justify-content: center;">
+          <% if @piece.artist.user.email.present? %>
+            <%= mail_to @piece.artist.user.email,
+                subject: "I'm interested in your work on where-art-thou.herokuapp.com! (#{@piece.title})",
+                body: "I found your work on where-art-thou.herokuapp.com (https://where-art-thou.herokuapp.com#{@piece.piece_url})",
+                class: "btn btn-default" do %>
+              Email Artist
+            <% end %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 
