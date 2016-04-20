@@ -8,31 +8,26 @@
   <ul class="nav nav-pills nav-stacked">
     <li>
       <%= form_tag root_path, method: :get do %>
+        <h5>Search</h5>
+        <hr>
+        <%= text_field_tag :search_location, params[:search_location], class:"form-control", placeholder: "Filter by location" %>
         <br>
-        <h5>Shop by Category</h5>
-        <hr>
-        <%=
-          select_tag :filter_cat, options_for_select(
-            @categories.map{|category| [category.name, category.id]}
-          ),
-          prompt: "Select category",
-          class: "btn", id: "sortby-dropdown", onchange: "this.form.submit();"
-        %>
-        <br><br>
-        <h5>Keyword</h5>
-        <hr>
-        <%= text_field_tag :search, params[:search] %>
-        <br><br>
-        <h5>Price</h5>
-        <hr>
+        <%= text_field_tag :search, params[:search], class:"form-control", placeholder: "Keyword" %>
+        <br>
         <p>
           <%= text_field_tag :search_min, params[:search_min], style:"max-width: 40%;", placeholder: number_to_currency(0) %>
           &nbsp;-&nbsp;
           <%= text_field_tag :search_max, params[:search_max], style:"max-width: 40%;", placeholder: number_to_currency(@pieces.map{|piece| piece.price}.max) %>
         </p>
         <br>
-        <h5>Sort</h5>
-        <hr>
+        <%=
+          select_tag :filter_cat, options_for_select(
+            @categories.map{|category| [category.name, category.id]}
+          ),
+          prompt: "Select category",
+          class: "btn btn-default", id: "sortby-dropdown", style: "width: 100%;"
+        %>
+        <br><br>
         <%=
           select_tag :sort, options_for_select([
             ["Price - Low to High", "lowhigh"],
@@ -43,9 +38,10 @@
             ["Name - Descending", "namedesc"]
           ]),
           prompt: "Sort by",
-          class: "btn", id: "sortby-dropdown", onchange: "this.form.submit();"
+          class: "btn btn-default", id: "sortby-dropdown", style: "width: 100%;"
         %>
-        <%= submit_tag "Search", style:"display: none;" %>
+        <br><br>
+        <%= submit_tag "Search", class: "btn btn-primary", style: "width: 100%;" %>
       <% end %>
       <br>
       <%= link_to "Clear filters", root_path, class: "btn btn-default" %>
