@@ -8,6 +8,7 @@ json.artist do
   json.id piece.artist.id
   json.shop_name piece.artist.shop_name
   json.photo_url piece.artist.photo_url
+  json.photo_url_thumbnail piece.artist.photo_url_thumbnail
   json.location piece.artist.location
   json.city piece.artist.city
   json.state piece.artist.state

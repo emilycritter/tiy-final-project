@@ -1,47 +1,49 @@
 <div class="art">
-  <div class="row">
-    <div class="col-md-2">
-      <h3>
-        <%= link_to @user.full_name, user_path(id: @user.id) %>
-        <% if @user.latitude && @user.longitude %>
-          <small>(<%= @user.location.downcase %>)</small>
-        <% end %>
-      </h3>
-      <br>
-      <h5>
-        <%= link_to "Edit User Profile", edit_user_path(id: @user.id) %>&nbsp;
-      </h5>
-      <hr>
-      <h5>
-      <% if @user.artist %>
-        <%= link_to "View Artist Profile", artist_path(id: @user.artist.user_id) %>
-        <small>(<%= link_to "Edit Artist Profile", edit_artist_path(id: @user.artist.user_id) %>)</small>
-      <% end %>
-      </h5>
-      <hr>
-    </div>
-    <div class="col-md-9">
-      <% if @user.favorites && @user.favorites.count > 0 %>
-        <h3 style="text-align: center;">your favorites</h3>
-        <hr>
-        <div class="container">
-          <% @favorites.each do |favorite| %>
-            <%= link_to piece_path(id: favorite.piece.id) do %>
-              <div class="image-tile">
-                <%= image_tag attachment_url(favorite.piece, :photo, :fill, 300, 300, format: "jpg") %>
-                <div class="favorite">
-                    <%= link_to unfavorite_piece_path(piece_id: favorite.piece.id, user_id: @user.id), method: :delete do %>
-                    <i class="fa fa-heart" aria-hidden="true"></i>
-                  <% end %>
-                </div>
-              </div>
-            <% end %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2">
+        <h3>
+          <%= link_to @user.full_name.downcase, user_path(id: @user.id) %>
+          <% if @user.latitude && @user.longitude %>
+            <small>(<%= @user.location.downcase %>)</small>
           <% end %>
-        </div>
-      <% else %>
-        <h3 style="text-align: center;"><%= link_to "return to artwork and select your favorites!", root_path %></h3>
+        </h3>
+        <br>
+        <h5>
+          <%= link_to "edit user profile", edit_user_path(id: @user.id) %>&nbsp;
+        </h5>
         <hr>
-      <% end %>
+        <h5>
+        <% if @user.artist %>
+          <%= link_to "view artist profile", artist_path(id: @user.artist.user_id) %>
+          <small>(<%= link_to "edit artist profile", edit_artist_path(id: @user.artist.user_id) %>)</small>
+        <% end %>
+        </h5>
+        <hr>
+      </div>
+      <div class="col-md-9">
+        <% if @user.favorites && @user.favorites.count > 0 %>
+          <h3 style="text-align: center;">your favorites</h3>
+          <hr>
+          <div class="container">
+            <% @favorites.each do |favorite| %>
+              <%= link_to piece_path(id: favorite.piece.id) do %>
+                <div class="image-tile">
+                  <%= image_tag attachment_url(favorite.piece, :photo, :fill, 300, 300, format: "jpg") %>
+                  <div class="favorite">
+                      <%= link_to unfavorite_piece_path(piece_id: favorite.piece.id, user_id: @user.id), method: :delete do %>
+                      <i class="fa fa-heart" aria-hidden="true"></i>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        <% else %>
+          <h3 style="text-align: center;"><%= link_to "return to artwork and select your favorites!", root_path %></h3>
+          <hr>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

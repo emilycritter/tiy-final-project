@@ -1,8 +1,8 @@
 <table class= "table table-hover" style="width:100%">
-  <th>Piece</th>
+  <th>piece</th>
   <th>&nbsp;</th>
-  <th>Quantity</th>
-  <th class="cart-price">Price</th>
+  <th>quantity</th>
+  <th class="cart-price">price</th>
   <% @order.order_items.each do |order_item| %>
     <tr>
       <td>
@@ -10,13 +10,13 @@
       </td>
       <td>
         <%= link_to order_item.piece.title, piece_path(id: order_item.piece.id) %>
-        <small>From: <%= order_item.piece.artist.shop_name %></small>
+        <small>from: <%= order_item.piece.artist.shop_name.downcase %></small>
       </td>
       <td>
         <strong><%= order_item.quantity %></strong>
         &nbsp;
         <% if @order.status == 'cart' %>
-          <%= link_to 'Remove from Cart', remove_from_cart_path(piece_id: order_item.piece_id), class: '', method: :delete %>
+          <small><%= link_to 'remove from cart', remove_from_cart_path(piece_id: order_item.piece_id), class: '', method: :delete %></small>
         <% end %>
       </td>
       <td class="cart-price">

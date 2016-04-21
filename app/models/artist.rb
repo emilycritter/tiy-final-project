@@ -30,6 +30,10 @@ class Artist < ActiveRecord::Base
     Refile.attachment_url(self, :photo, :fill, 300, 300, format: "jpg")
   end
 
+  def photo_url_thumbnail
+    Refile.attachment_url(self, :photo, :fill, 150, 150, format: "jpg")
+  end
+
   def artist_url
     Rails.application.routes.url_helpers.artist_path(id: id)
   end

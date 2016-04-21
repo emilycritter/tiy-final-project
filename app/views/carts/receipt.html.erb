@@ -1,13 +1,13 @@
 <div class="container">
   <div class="cart">
-    <h3>Thank you for your order!</h3>
+    <h3>thank you for your order!</h3>
     <% if @order && @order.order_items.present? && @current_user %>
       <h3><small><%= @order.description %></small></h3>
       <%= render 'table' %>
       <hr>
-      <h5 style="text-align: right;">Order Total: <%= number_to_currency @order.total_price %></h5>
+      <h5 style="text-align: right;">order total: <%= number_to_currency @order.total_price %></h5>
       <div class="checkout">
-          <%= link_to 'Continue Shopping', root_path, class: 'btn btn-default' %>
+          <%= link_to 'continue shopping', root_path, class: 'btn btn-default' %>
       </div>
     <% end %>
   </div>

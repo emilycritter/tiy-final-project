@@ -30,6 +30,7 @@
           <small>(<%= @piece.artist.city_state.downcase %>)</small>
         <% end %>
       </h3>
+      <hr>
       <% if @current_user && @current_user == @piece.artist.user %>
         <h4>
           <%= link_to edit_piece_path(id: @piece.id) do %>

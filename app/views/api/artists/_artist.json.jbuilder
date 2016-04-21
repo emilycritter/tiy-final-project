@@ -4,7 +4,7 @@ json.name_parameterize artist.name_parameterize
 json.artist_piece_count artist.pieces.count
 json.bio artist.bio
 json.artist_url artist.artist_url
-json.photo_url artist.photo_url
+json.photo_url_thumbnail artist.photo_url_thumbnail
 json.location artist.location
 json.latitude artist.latitude
 json.longitude artist.longitude
@@ -31,6 +31,7 @@ json.pieces artist.pieces do |piece|
     json.name category.name
   end
   json.photo piece.photo
+  json.photo_url piece.photo_url
   json.photo_url piece.photo_url
   json.piece_url piece_path(id: piece.id)
   json.artist do

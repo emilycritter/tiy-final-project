@@ -150,6 +150,7 @@ footer {
 .my-row {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   padding: 15px;
   max-width: 100%;
   .my-col-9 {
