@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :users
   resources :artists
 
+  get 'artists/:id/inventory' => 'artists#inventory', as: :inventory
+
   get 'sign_in' => 'sessions#new', as: :sign_in
   post 'sign_in' => 'sessions#create'
   get 'sign_out' => 'sessions#delete', as: :sign_out

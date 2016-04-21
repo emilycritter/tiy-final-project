@@ -13,12 +13,13 @@
           <%= link_to "edit user profile", edit_user_path(id: @user.id) %>&nbsp;
         </h5>
         <hr>
-        <h5>
         <% if @user.artist %>
-          <%= link_to "view artist profile", artist_path(id: @user.artist.user_id) %>
-          <small>(<%= link_to "edit artist profile", edit_artist_path(id: @user.artist.user_id) %>)</small>
+          <h5>
+            <%= link_to "view artist profile", artist_path(id: @user.artist.user_id) %>
+            <small>(<%= link_to "edit artist profile", edit_artist_path(id: @user.artist.user_id) %>)</small>
+          </h5>
+          <h5><%= link_to "view inventory", inventory_path(id: @user.artist.user_id) %></h5>
         <% end %>
-        </h5>
         <hr>
       </div>
       <div class="col-md-9">
