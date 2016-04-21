@@ -31,9 +31,8 @@
                 <div class="image-tile">
                   <%= image_tag attachment_url(favorite.piece, :photo, :fill, 300, 300, format: "jpg") %>
                   <div class="favorite">
-                      <%= link_to unfavorite_piece_path(piece_id: favorite.piece.id, user_id: @user.id), method: :delete do %>
-                      <i class="fa fa-heart" aria-hidden="true"></i>
-                    <% end %>
+                      <i class="fa fa-heart" id="unfavorite" aria-hidden="true" onclick="unfavoriteHandler(<%= @user.id %>, <%= favorite.piece.id %>)"></i>
+                      <i class="fa fa-heart-o" id="addfavorite" aria-hidden="true" onclick="addFavoriteHandler(<%= @user.id %>, <%= favorite.piece.id %>)"></i>
                   </div>
                 </div>
               <% end %>
@@ -47,3 +46,26 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  function unfavoriteHandler(currentUserId, pieceId){
+    var currentLocation = window.location.href;
+    console.log(currentLocation);
+    var url = '/api/favorite/' + currentUserId + '/' + pieceId;
+    $.ajax({
+      type: "POST",
+      url: url
+    });
+    window.location.assign(currentLocation);
+  };
+  function addFavoriteHandler(currentUserId, pieceId){
+    var currentLocation = window.location.href;
+    console.log(currentLocation);
+    var url = '/api/favorite/' + currentUserId + '/' + pieceId;
+    $.ajax({
+      type: "DELETE",
+      url: url
+    });
+    window.location.assign(currentLocation);
+  };
+</script>

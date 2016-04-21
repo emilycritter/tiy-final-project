@@ -49,6 +49,27 @@ class Api::UsersController < ApplicationController
     head :ok
   end
 
+  def favorite_piece
+    @user = User.find_by id: params[:user_id]
+    @piece = Piece.find_by id: params[:piece_id]
+
+    @favorite = Favorite.new
+    @favorite.user = @user
+    @favorite.piece = @piece
+    if @favorite.save
+      render :show
+    else
+      render json: {errors: @user.errors}, status: 422
+    end
+  end
+
+  def unfavorite_piece
+    @user = User.find_by id: params[:user_id]
+    @favorite = Favorite.find_by user_id: params[:user_id], piece_id: params[:piece_id]
+    @favorite.destroy
+    head :ok
+  end
+
   private
 
   def user_params

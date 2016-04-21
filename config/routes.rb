@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     get 'me' => 'users#me'
     patch 'users/location/:id' => 'users#update_location'
     put 'users/location/:id' => 'users#update_location'
+    post 'favorite/:user_id/:piece_id' => 'users#favorite_piece', as: :favorite_piece
+    delete 'favorite/:user_id/:piece_id' => 'users#unfavorite_piece', as: :unfavorite_piece
   end
 
   post 'favorite/:user_id/:piece_id' => 'users#favorite_piece', as: :favorite_piece
