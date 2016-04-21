@@ -8,12 +8,8 @@ class Api::PiecesController < ApplicationController
     @user_location = request.location
     if @user_location
       local_only = params[:local_only]
-      if local_only == "on"
-        search_radius = 30
-      else
-        search_radius = 400
-      end
-
+      search_radius = 30 if local_only == "on"
+      search_radius = 500 if local_only != "on"
       if @user_location.coordinates == [0.0, 0.0]
         @nearby_artists = Artist.near([29.7604, -95.3698], search_radius, :order => "distance") # set default coordinates to Houston
       else
@@ -21,7 +17,7 @@ class Api::PiecesController < ApplicationController
       end
       @nearby_artists = @nearby_artists.map{|artist| artist}
     else
-      @nearby_artists = Artist.all.order("shop_name asc")
+      @nearby_artists = Artist.all
     end
 
     @pieces = @pieces.where(artist_id: @nearby_artists.map{|artist| artist.id})
