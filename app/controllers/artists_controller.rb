@@ -1,10 +1,17 @@
 class ArtistsController < ApplicationController
   def index
-    @artists = Artist.all.order("shop_name asc")
+    @user_location = request.location
+    if @user_location
+      @artists = Artist.near(@user_location.coordinates, 400, :order => "distance")
+      @artists = @artists.map{|artist| artist}
+    else
+      @artists = Artist.all.order("shop_name asc")
+    end
     search_text = params[:search]
     if search_text.present?
       @artists = @artists.search_all(search_text)
     end
+
   end
 
   def show
