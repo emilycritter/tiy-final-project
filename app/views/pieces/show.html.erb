@@ -11,13 +11,9 @@
         <% if @current_user %>
           <div class="favorite">
             <% if @current_user.favorites.collect(&:piece).include? @piece %>
-              <%= link_to unfavorite_piece_path(piece_id: @piece.id, user_id: @current_user.id), method: :delete do %>
-                <i class="fa fa-heart" aria-hidden="true"></i>
-              <% end %>
+              <i class="fa fa-heart" id="unfavorite" aria-hidden="true" onclick="unfavoriteHandler(<%= @current_user.id %>, <%= @piece.id %>)"></i>
             <% else %>
-              <%= link_to favorite_piece_path(piece_id: @piece.id, user_id: @current_user.id), method: :post do %>
-                <i class="fa fa-heart-o" aria-hidden="true"></i>
-              <% end %>
+              <i class="fa fa-heart-o" id="addfavorite" aria-hidden="true" onclick="addFavoriteHandler(<%= @current_user.id %>, <%= @piece.id %>)"></i>
             <% end %>
           </div>
         <% end %>
@@ -85,3 +81,22 @@
   </div>
 
 </div>
+
+<script type="text/javascript">
+  function addFavoriteHandler(currentUserId, pieceId){
+    var url = '/api/favorite/' + currentUserId + '/' + pieceId;
+    $.ajax({
+      type: "POST",
+      url: url
+    });
+    location.reload();
+  };
+  function unfavoriteHandler(currentUserId, pieceId){
+    var url = '/api/favorite/' + currentUserId + '/' + pieceId;
+    $.ajax({
+      type: "DELETE",
+      url: url
+    });
+    location.reload();
+  };
+</script>
