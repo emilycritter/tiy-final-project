@@ -25,9 +25,7 @@
             <small><%= piece.description.truncate(150) %></small>
           </td>
           <td>
-            <% piece.categories.each do |category| %>
-              category.name
-            <% end %>
+            <%= piece.categories.map{|cat| cat.name.downcase}.join(', ') %>
           </td>
           <td>
             <%= piece.view_count %>
