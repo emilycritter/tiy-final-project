@@ -8,6 +8,11 @@
   <ul class="nav nav-pills nav-stacked">
     <li>
       <%= form_tag root_path, method: :get do %>
+        <label for="local_only" class="category-select">
+          <%= check_box_tag :local_only, params[:local_only] %>
+          show local art only
+        </label>
+        <br><br>
         <%= text_field_tag :search_location, params[:search_location], class:"form-control", placeholder: "search a city" %>
         <br>
         <%= text_field_tag :search, params[:search], class:"form-control", placeholder: "keyword" %>
