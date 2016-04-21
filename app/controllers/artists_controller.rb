@@ -40,7 +40,7 @@ class ArtistsController < ApplicationController
 
   def edit
     @artist = Artist.find_by id: params[:id]
-    redirect_to root_path if @artist.user != @current_user
+    redirect_to root_path if @artist.nil? || @artist.user != @current_user
   end
 
   def update
@@ -68,8 +68,6 @@ class ArtistsController < ApplicationController
   def inventory
     @artist = Artist.find_by id: params[:id]
 
-    if @current_user && @artist.user != @current_user
-      redirect_to artist_path(id: @artist.id)
-    end
+    redirect_to root_path if @artist.nil? || @artist.user != @current_user
   end
 end
