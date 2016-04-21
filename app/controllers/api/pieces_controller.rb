@@ -4,10 +4,27 @@ class Api::PiecesController < ApplicationController
   def index
     @categories = Category.all.order("name asc")
     @pieces = Piece.all
-    if @current_user
-      nearby_artists = Artist.geocoded.near(@current_user, 20)
-      @nearby_pieces = @pieces.where(artist_id: nearby_artists.map{|artist| artist.id})
+
+    @user_location = request.location
+    if @user_location
+      local_only = params[:local_only]
+      if local_only == "on"
+        search_radius = 30
+      else
+        search_radius = 400
+      end
+
+      if @user_location.coordinates == [0.0, 0.0]
+        @nearby_artists = Artist.near([29.7604, -95.3698], search_radius, :order => "distance") # set default coordinates to Houston
+      else
+        @nearby_artists = Artist.near(@user_location.coordinates, search_radius, :order => "distance")
+      end
+      @nearby_artists = @nearby_artists.map{|artist| artist}
+    else
+      @nearby_artists = Artist.all.order("shop_name asc")
     end
+
+    @pieces = @pieces.where(artist_id: @nearby_artists.map{|artist| artist.id})
 
     case params[:sort]
     when "lowhigh" then @pieces = @pieces.where('inventory > 0').order("price asc")

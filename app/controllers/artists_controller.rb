@@ -3,9 +3,9 @@ class ArtistsController < ApplicationController
     @user_location = request.location
     if @user_location
       if @user_location.coordinates == [0.0, 0.0]
-        @artists = Artist.near([29.7604, 95.3698], 400, :order => "distance") # set default coordinates to Houston
+        @artists = Artist.near([29.7604, -95.3698], 500, :order => "distance") # set default coordinates to Houston
       else
-        @artists = Artist.near(@user_location.coordinates, 400, :order => "distance")
+        @artists = Artist.near(@user_location.coordinates, 500, :order => "distance")
       end
       @artists = @artists.map{|artist| artist}
     else
