@@ -25,7 +25,7 @@
     </div>
     <div class="col-md-6" style="max-width: 100%;">
       <h3>
-        By: <%= link_to @piece.artist.shop_name, artist_path(id: @piece.artist.id) %>&nbsp;
+        from: <%= link_to @piece.artist.shop_name.downcase, artist_path(id: @piece.artist.id) %>&nbsp;
         <% if @piece.artist.city_state %>
           <small>(<%= @piece.artist.city_state.downcase %>)</small>
         <% end %>
@@ -59,12 +59,12 @@
         <h5><span style="text-decoration: line-through;"><%= number_to_currency @piece.price %></span> <small> sold out </small></h5>
       <% end %>
       <%= link_to add_to_cart_path(piece_id: @piece.id), method: :post, class: "btn btn-primary" do %>
-        Add to Cart
+        add to cart
       <% end %>
       <br><br>
       <hr>
       <% if @piece.artist.pieces.count > 1 %>
-        <h5>Other work by this artist: </h5>
+        <h5>other work by this artist: </h5>
         <div class="art" style="max-width: 100%;">
           <%= react_component('PiecesListByArtist', { data: @piece.artist.id, max_entries: 4 }) %>
         </div>
@@ -76,7 +76,7 @@
                 subject: "I'm interested in your work on where-art-thou.herokuapp.com! (#{@piece.title})",
                 body: "I found your work on where-art-thou.herokuapp.com (https://where-art-thou.herokuapp.com#{@piece.piece_url})",
                 class: "btn btn-default" do %>
-              Email Artist
+              email artist
             <% end %>
           <% end %>
         </div>
