@@ -43,7 +43,7 @@ var MapDisplay = React.createClass({
 
     this.state.artists.map(function(artist){
       L.marker([artist.latitude, artist.longitude]).addTo(mymap)
-        .bindPopup('<b>' + artist.shop_name.toLowerCase() + '</b>' + artist.location.toLowerCase() + '<br/><img src="https://where-art-thou.herokuapp.com' + artist.photo_url_thumbnail + '"/>' + '<br/><a href="https://where-art-thou.herokuapp.com' + artist.artist_url + '">View Shop</a>');
+        .bindPopup('<b>' + artist.shop_name.toLowerCase() + '</b>' + artist.location.toLowerCase() + '<br/>');
     });
 
   },

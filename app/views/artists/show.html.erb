@@ -45,7 +45,7 @@
       accessToken: 'pk.eyJ1IjoiZW1pbHljcml0dGVyIiwiYSI6ImNpbWdmZXhmYzAyMDV1NGx2bHM0MTNzNGYifQ.7KYzLItfXBfg5Zs-757BGw'
   }).addTo(mymap);
   L.marker([<%= @artist.latitude %>, <%= @artist.longitude %>]).addTo(mymap)
-    .bindPopup('<b><%= @artist.shop_name %></b><%= @artist.location %><br/> <%= image_tag attachment_url(@artist, :photo, :fill, 160, 160), class: "img-responsive" %>');
+    .bindPopup('<b><%= @artist.shop_name.downcase %></b><%= @artist.location.downcase %><br/> <%= image_tag attachment_url(@artist, :photo, :fill, 150, 150) %>');
   })
 </script>
 
