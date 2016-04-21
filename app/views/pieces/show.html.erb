@@ -54,8 +54,14 @@
       <% else %>
         <h5><span style="text-decoration: line-through;"><%= number_to_currency @piece.price %></span> <small> sold out </small></h5>
       <% end %>
-      <%= link_to add_to_cart_path(piece_id: @piece.id), method: :post, class: "btn btn-primary" do %>
-        add to cart
+      <% if @current_user %>
+        <%= link_to add_to_cart_path(piece_id: @piece.id), method: :post, class: "btn btn-primary" do %>
+          add to cart
+        <% end %>
+      <% else %>
+        <%= link_to sign_in_path, class: "btn btn-primary" do %>
+          add to cart
+        <% end %>
       <% end %>
       <br><br>
       <hr>
