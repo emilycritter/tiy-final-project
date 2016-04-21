@@ -1,7 +1,7 @@
 Geocoder.configure(
   # Geocoding options
   timeout: 30,                 # geocoding service timeout (secs)
-  lookup: :ipinfo_io,           # name of geocoding service (symbol)
+  lookup: :google,           # name of geocoding service (symbol)
   ip_lookup: :ipinfo_io,           # name of geocoding service (symbol)
   # lookup: :google,            # name of geocoding service (symbol)
   # language: :en,              # ISO-639 language code
