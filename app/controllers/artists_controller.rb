@@ -64,4 +64,12 @@ class ArtistsController < ApplicationController
   def artist_params
     params.require(:artist).permit(:shop_name, :bio, :photo, :location, :latitude, :longitude, :user_id)
   end
+
+  def inventory
+    @artist = Artist.find_by id: params[:id]
+
+    if @current_user && @artist.user != @current_user
+      redirect_to artist_path(id: @artist.id)
+    end
+  end
 end

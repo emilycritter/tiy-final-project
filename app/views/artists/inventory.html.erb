@@ -1,0 +1,54 @@
+<div class="art">
+  <div class="container">
+    <h1 style="padding-bottom: 20px;"><strong>artist:</strong> <%= @artist.shop_name.downcase %> <small><%= @artist.city_state.downcase %></small></h1>
+    <table class= "table table-hover inventory-table" style="width:100%">
+      <th>edit</th>
+      <th>piece</th>
+      <th class="inventory-desc">details</th>
+      <th>categories</th>
+      <th>view count</th>
+      <th>favorite count</th>
+      <th>current inventory</th>
+      <th>list price</th>
+      <th>delete</th>
+      <% @artist.pieces.each do |piece| %>
+        <tr>
+          <td>
+            <strong><%= link_to "go!", edit_piece_path(id: piece.id) %></strong>
+          </td>
+          <td>
+            <div class="img img-responsive"><%= image_tag attachment_url(piece, :photo, :fill, 150, 150, format: "jpg") %></div>
+          </td>
+          <td class="inventory-desc">
+            <%= link_to piece.title, piece_path(id: piece.id) %>
+            <br>
+            <small><%= piece.description.truncate(150) %></small>
+          </td>
+          <td>
+            <% piece.categories.each do |category| %>
+              category.name
+            <% end %>
+          </td>
+          <td>
+            <%= piece.view_count %>
+          </td>
+          <td>
+            <%= piece.favorites.count if piece.favorites %>
+          </td>
+          <td>
+            <strong><%= piece.inventory %></strong>
+          </td>
+          <td>
+            <%= number_to_currency piece.price %>
+          </td>
+          <td>
+            <%= link_to piece_path(id: piece.id), method: :delete, data: {confirm: "Are you sure you want to delete?"} do %>
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+
+  </div>
+</div>
