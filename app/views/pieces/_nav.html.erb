@@ -1,18 +1,16 @@
 <div class="search-filter-nav">
   <% if @current_user && @current_user.favorites %>
     <br>
-    <h5><%= link_to "View Favorites", user_path(id: @current_user.id) %></h5>
+    <h5><%= link_to "view favorites", user_path(id: @current_user.id) %></h5>
     <hr>
   <% end %>
 
   <ul class="nav nav-pills nav-stacked">
     <li>
       <%= form_tag root_path, method: :get do %>
-        <h5>Search</h5>
-        <hr>
-        <%= text_field_tag :search_location, params[:search_location], class:"form-control", placeholder: "Filter by location" %>
+        <%= text_field_tag :search_location, params[:search_location], class:"form-control", placeholder: "search a city" %>
         <br>
-        <%= text_field_tag :search, params[:search], class:"form-control", placeholder: "Keyword" %>
+        <%= text_field_tag :search, params[:search], class:"form-control", placeholder: "keyword" %>
         <br>
         <p>
           <%= text_field_tag :search_min, params[:search_min], style:"max-width: 40%;", placeholder: number_to_currency(0) %>
@@ -22,29 +20,29 @@
         <br>
         <%=
           select_tag :filter_cat, options_for_select(
-            @categories.map{|category| [category.name, category.id]}
+            @categories.map{|category| [category.name.downcase, category.id]}
           ),
-          prompt: "Select category",
+          prompt: "select category",
           class: "btn btn-default", id: "sortby-dropdown", style: "width: 100%;"
         %>
         <br><br>
         <%=
           select_tag :sort, options_for_select([
-            ["Price - Low to High", "lowhigh"],
-            ["Price - High to Low", "highlow"],
-            ["New Arrivals", "newestfirst"],
-            ["Popularity", "popular"],
-            ["Name - Ascending", "nameasc"],
-            ["Name - Descending", "namedesc"]
+            ["price - low to high", "lowhigh"],
+            ["price - high to low", "highlow"],
+            ["new arrivals", "newestfirst"],
+            ["popularity", "popular"],
+            ["name - ascending", "nameasc"],
+            ["name - descending", "namedesc"]
           ]),
-          prompt: "Sort by",
+          prompt: "sort by",
           class: "btn btn-default", id: "sortby-dropdown", style: "width: 100%;"
         %>
         <br><br>
-        <%= submit_tag "Search", class: "btn btn-primary", style: "width: 100%;" %>
+        <%= submit_tag "search", class: "btn btn-primary", style: "width: 100%;" %>
       <% end %>
       <br>
-      <%= link_to "Clear filters", root_path, class: "btn btn-default" %>
+      <%= link_to "clear filters", root_path, class: "btn btn-default" %>
     </li>
   </ul>
 </div>

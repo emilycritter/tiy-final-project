@@ -1,11 +1,11 @@
 <div class="container">
   <div class="cart">
-    <h3><%= @current_user.full_name %>'s cart</h3>
+    <h3><%= @current_user.full_name.downcase %>'s cart</h3>
     <br>
     <% if @order && @order.order_items.present? && @current_user %>
       <%= render 'table' %>
       <hr>
-      <h5 class="order-total">Order Total: <strong><%= number_to_currency @order.total_price %></strong></h5>
+      <h5 class="order-total">order total: <strong><%= number_to_currency @order.total_price %></strong></h5>
       <div class="checkout">
         <%= form_tag process_payment_path, method: :post, id: "payment-form" do %>
 

@@ -1,6 +1,6 @@
 <div class="art">
   <div class="container">
-    <h1>Artist: <%= @artist.shop_name %> <small><%= @artist.city_state %></small></h1>
+    <h1><strong>artist:</strong> <%= @artist.shop_name.downcase %> <small><%= @artist.city_state.downcase %></small></h1>
     <div class="container">
       <div class="container">
         <div id="mapid" style="margin: 10px;"></div>
@@ -17,7 +17,7 @@
           <%= mail_to @artist.user.email,
               subject: "I'm interested in your work on where-art-thou.herokuapp.com!",
               class: "btn btn-default" do %>
-            Email Artist
+            email artist
           <% end %>
         <% end %>
         <br>

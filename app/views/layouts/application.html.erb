@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>where ART thou</title>
+  <title>where.art.thou</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" media="screen" title="no title" charset="utf-8">
   <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300italic,700' rel='stylesheet' type='text/css'>
@@ -22,23 +22,23 @@
   <header>
     <h1>where.<strong>art</strong>.thou</h1>
     <ul class="nav nav-tabs nav-justified">
-      <li><%= link_to "Home", root_path %></li>
-      <li><%= link_to "Artists", artists_path %></li>
+      <li><%= link_to "home", root_path %></li>
+      <li><%= link_to "artists", artists_path %></li>
 
       <% if @current_user %>
         <li>
           <%= link_to user_path(id: @current_user.id) do %>
-            <%= @current_user.full_name %>
+            <%= @current_user.full_name.downcase %>
           <% end %>
         </li>
-        <li><%= link_to "Sign Out", sign_out_path %></li>
+        <li><%= link_to "sign out", sign_out_path %></li>
         <li>
           <%= link_to cart_path do %>
-            View Cart <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            view cart <i class="fa fa-shopping-cart" aria-hidden="true"></i>
           <% end %>
         </li>
       <% else %>
-        <li><%= link_to "Sign In", sign_in_path %></li>
+        <li><%= link_to "sign in", sign_in_path %></li>
       <% end %>
     </ul>
   </header>
@@ -49,27 +49,27 @@
 
   <footer>
     <h5>
-      <%= link_to "Home", root_path %> &nbsp;|&nbsp;
+      <%= link_to "home", root_path %> &nbsp;|&nbsp;
       <% if @current_user %>
         <%= link_to user_path(id: @current_user.id) do %>
-          User Profile: <%= @current_user.full_name %>
+          user profile: <%= @current_user.full_name.downcase %>
         <% end %>
         &nbsp;|&nbsp;
         <% if @current_user.artist.nil? %>
-          <%= link_to "Create Artist Profile", new_artist_path %> &nbsp;|&nbsp;
+          <%= link_to "create artist trofile", new_artist_path %> &nbsp;|&nbsp;
         <% elsif @current_user.artist %>
-          <%= link_to "Edit Artist Profile", edit_artist_path(id: @current_user.artist.id) %> &nbsp;|&nbsp;
+          <%= link_to "edit artist profile", edit_artist_path(id: @current_user.artist.id) %> &nbsp;|&nbsp;
         <% end %>
-        <%= link_to "Sign Out", sign_out_path %>
+        <%= link_to "sign out", sign_out_path %>
       <% else %>
-        <%= link_to "Sign In", sign_in_path %> &nbsp;|&nbsp;
-        <%= link_to "Sign Up", new_user_path %>
+        <%= link_to "sign in", sign_in_path %> &nbsp;|&nbsp;
+        <%= link_to "sign up", new_user_path %>
       <% end %>
     </h5>
     <h5>
-      <a href="https://stripe.com/">Payment with Stripe</a> &nbsp;|&nbsp;
-      Terms &amp; Conditions &nbsp;|&nbsp;
-      Return Policy
+      <a href="https://stripe.com/">payment with stripe</a> &nbsp;|&nbsp;
+      terms &amp; conditions &nbsp;|&nbsp;
+      return policy
     </h5>
     <h5>&copy; 2016 <a href="http://emilycritter.com/">emily c. ritter</a></h5>
   </footer>

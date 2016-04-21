@@ -23,16 +23,15 @@ var MapDisplay = React.createClass({
 
     function onLocationFound(e) {
       var radius = e.accuracy / 2;
-      if (component.isMounted()) {
+      if (component.isMounted() && e.latlng !== null) {
         component.setState({
           latitude: e.latlng.lat.toFixed(5),
           longitude: e.latlng.lng.toFixed(5)
         });
+        L.marker(e.latlng).addTo(mymap)
+            .bindPopup("<b>Current Location</b>(" + component.state.latitude + ", " + component.state.longitude + ")").openPopup();
+        L.circle(e.latlng, radius).addTo(mymap);
       };
-
-      L.marker(e.latlng).addTo(mymap)
-          .bindPopup("<b>Current Location</b>(" + component.state.latitude + ", " + component.state.longitude + ")").openPopup();
-      L.circle(e.latlng, radius).addTo(mymap);
     }
 
     mymap.on('locationfound', onLocationFound);
@@ -44,8 +43,8 @@ var MapDisplay = React.createClass({
 
     this.state.artists.map(function(artist){
       L.marker([artist.latitude, artist.longitude]).addTo(mymap)
-        // .bindPopup('<b>' + artist.shop_name+ '</b>' + artist.location + '<br/><img src="' + artist.photo_url + '"/>' + '<br/><a href="' + artist.artist_url + '">View Shop</a>');
-        .bindPopup('<b>' + artist.shop_name+ '</b>' + artist.location);
+        .bindPopup('<b>' + artist.shop_name+ '</b>' + artist.location + '<br/><img src="https://where-art-thou.herokuapp.com' + artist.photo_url_thumbnail + '"/>' + '<br/><a href="https://where-art-thou.herokuapp.com' + artist.artist_url + '">View Shop</a>');
+        // .bindPopup('<b>' + artist.shop_name+ '</b>' + artist.location);
     });
 
   },
