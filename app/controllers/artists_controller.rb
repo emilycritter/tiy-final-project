@@ -14,7 +14,7 @@ class ArtistsController < ApplicationController
 
     search_text = params[:search]
     if search_text.present?
-      @artists = @artists.search_all(search_text)
+      @artists = Artist.search_all(search_text)
     end
   end
 
