@@ -50,7 +50,6 @@
 <script type="text/javascript">
   function unfavoriteHandler(currentUserId, pieceId){
     var currentLocation = window.location.href;
-    console.log(currentLocation);
     var url = '/api/favorite/' + currentUserId + '/' + pieceId;
     $.ajax({
       type: "POST",
@@ -60,7 +59,6 @@
   };
   function addFavoriteHandler(currentUserId, pieceId){
     var currentLocation = window.location.href;
-    console.log(currentLocation);
     var url = '/api/favorite/' + currentUserId + '/' + pieceId;
     $.ajax({
       type: "DELETE",
