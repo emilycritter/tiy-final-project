@@ -24,5 +24,4 @@ where.art.thou isn't just your typical online marketplace for buying and selling
 ### View cart
 ![cart_path](/screenshots/cart.png?raw=true)
 
-![img](/erd copy.png?raw=true)
-
+![img](/screenshots/erd.png?raw=true)
